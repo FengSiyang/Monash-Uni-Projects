@@ -1,0 +1,711 @@
+import java.util.*;
+
+/**
+ * The main class of the movie data system.
+ * this class is used to display all the information of database.
+ * All other class will be invoked in this method to build the whole system.
+ * 
+ * @author Siyang Feng 
+ * @version 1.0 (May 16, 2017)
+ */
+public class MovieDatabaseInterface
+{
+    private MovieCollection movies;
+
+    /**
+     * Constructor for objects of class MovieDatabaseInterface
+     */
+    public MovieDatabaseInterface()
+    {
+        movies = new MovieCollection();
+    }
+    
+    // ====================== read text file to movie collection =====================+//
+    /**
+     * Read the text file into a line collection
+     * each object of the collection is a line in the text
+     * 
+     * @return     the text line collection 
+     */
+    private ArrayList<String> readFile()
+    {
+        MovieDataReading lines = new MovieDataReading();  // construct the object of readed text file
+        return lines.readCheckFile("myvideos.txt");  // read the text file into an ArrayList of String
+                                                     // each String represent one line of the file.
+    }
+    
+    /**
+     * this method is used to split each line of file (a String).
+     * readed collection into an array.
+     * splited by ", ".
+     * 
+     * @param   movieInfo, one text line of the collection returned by readFile().                    
+     * @return  aMovieInfo, the spited line for one movie information.
+     */
+    private String[] splitOneLine(String movieInfo)
+    {
+        String[] aMovieInfo = movieInfo.split(", "); // split a line into String array
+        return aMovieInfo;  // string array of one movie
+    }
+    
+    /**
+     * This method is used to build one movie.
+     * It will call the splitOneLine(String ...) to get movie information.
+     * This part is used for reading information from text into movie collection.
+     * Read the information of a line into a movie
+     * 
+     * @param   aLine, one line in the text file
+     * @return  aMovie, one object of Movie class
+     */
+    private Movie buildOneMovie(String aLine)
+    {
+        String[] splitedLine = splitOneLine(aLine);  // invoke split method
+        Movie aMovie = new Movie();
+        aMovie.setTitle(splitedLine[0]);
+        aMovie.setDirector(splitedLine[1]);
+        aMovie.setActorList(buildActorList(splitedLine));
+        aMovie.setRating(splitedLine[5]);            
+        return aMovie;
+    }
+    
+    /**
+     * this method is used to build a actor list.
+     * this actor list will be invoked by build movie method to get the actor part of movie.
+     * this part is used for reading information from text into actor collection.
+     * 
+     * @param   actorInfo, the array of string reading from text file
+     * @return  actors, the actor list
+     */
+    private ActorCollection buildActorList(String[] aLineInfo)
+    {
+        ActorCollection actors = new ActorCollection();
+        for (int i = 2; i < (aLineInfo.length - 1); i++)  // the actor's info is start with the third
+        {
+            Actor oneActor = new Actor();
+            oneActor.setActorName(aLineInfo[i]);
+            actors.addActor(oneActor);
+        }
+        return actors;
+    }
+    
+    /**
+     * This method is used to read the text file by calling readFile().
+     * Read the file into the movie collection and set the colection into 
+     * the MovieCollection object.
+     * This method combine the method, readFile(), buildOneMovie(String ...).
+     */
+    private void recordMovieCollection()
+    {
+        for (String aLine : readFile())
+            movies.addMovie(buildOneMovie(aLine));  // add one movie info into a movie list
+    }
+    
+    private void displayMovie()
+    {
+        System.out.println(movies.getMovieList().size());
+        displayMovie(movies.getMovieList());
+    }
+    
+    
+    // ============================== write the movies to the file =============================== \\
+    
+    /**
+     * Method of writing the movies in the movie collection into the text file
+     */
+    private void writetMovieToFile()
+    {
+        MovieDataWriting txtFile = new MovieDataWriting();
+        txtFile.writeFileCheck(movies.getMovieList(), "myvideos.txt");
+    }
+
+    
+    // ============================== Display Info and Input string ================================ //
+    
+    /**
+     * Title display method. 
+     * This method will be used in the top of the screan for every showing. 
+     */
+    private void titleDisplay()
+    {
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println("====== Welcome Movie Database System ======");
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++\n");
+    }
+    
+    /**
+     * Menu display method.
+     */
+    private void menuDisplay()
+    {
+        System.out.println("(1) Search Movies\n" + 
+                                "(2) Add Movie\n" + 
+                                "(3) Delete Movie\n" + 
+                                "(4) Display Favourite Movies\n" +
+                                "(5) Exit System\n" +
+                                "(6) Edit Movie\n");
+        System.out.print("Choose your option (1 - 5): ");
+    }
+    
+    /**
+     * String input method.
+     * 
+     * @return  input, the input string.
+     */
+    private String InputString()
+    {
+        Scanner scan = new Scanner(System.in);
+        String input = scan.nextLine().trim();
+        return input;
+    }
+    
+    
+    /**
+     * integer input method.
+     * 
+     * @return  inputInteger.
+     */
+    private Integer InputInt()
+    {
+        int inputInteger = -1;
+        try
+        {
+            inputInteger = Integer.parseInt(InputString());
+        }
+        catch (NumberFormatException e)  // the input string is not the number format
+        {
+            return -10086;
+        }
+        return inputInteger;
+    }
+    
+    /**
+     * Display each movie in movie list.
+     * 
+     * @param   movieList, the collection of movies, using arraylist.
+     */
+    private void displayMovie(ArrayList<Movie> movieList)
+    {
+        int i = 1;
+        for (Movie aMovie : movieList)
+        {
+            System.out.print(i + ". " + aMovie.getTitle() + ", " + aMovie.getDirector()); 
+            displayActorList(aMovie.getActorList());          
+            System.out.println(", " + aMovie.getRating());
+            i++;
+        }
+    } 
+    
+    /**
+     * Display each actor in one actor list
+     * 
+     * @param   actorList, object of ActorCollection
+     */
+    private void displayActorList(ActorCollection actorList)
+    {
+        for (int i = 0; i < actorList.actorListSize(); i++)
+            System.out.print(", " + actorList.getOneActor(i).getActorName());
+    }
+    
+    
+    // ====================================== Movie Collection Functons ================================== //
+    
+    /**
+     * This method is used to choice the operation.
+     * And invoke all functions of movie collection to deal the collection.
+     * The main method of function part.
+     * 
+     * @param   inputOp, the input opetation number
+     * @return  notExit, the boolean value, for controling the while loop
+     *                      notExit = false when inputOp = 5
+     *                      notExit = true when inputOp = else
+     */
+    private boolean functionChoice(String inputOp)
+    {
+        boolean notExit = true;
+        switch (inputOp)
+        {
+            case "1":
+                searchMovie();
+                clearControl();         break;
+            case "2":
+                addMovie();
+                clearControl();         break;
+            case "3":
+                deleteMovie();
+                clearControl();         break;
+            case "4":
+                favouriteMovies();
+                clearControl();         break;
+            case "5":
+                writetMovieToFile();
+                movies.clearMovie();
+                notExit = false;        break;
+            case "6": 
+                editMovie();  
+                clearControl();         break;
+            default:
+                wrongInput();
+                clearControl();
+        }
+        return notExit;
+    } 
+    
+    /**
+     * method of clear crean control.
+     */
+    private void clearControl()
+    {
+        System.out.println();
+        System.out.println("Press any key to continue ...");
+        InputString();
+    }
+    
+    // ++++++++++++++++++++++++ searching ++++++++++++++++++++++++++++ //
+    
+    /**
+     * input wrong number.
+     */
+    private void wrongInput()
+    {
+        System.out.println("Sorry, you input wrong number.");
+    }
+    
+    /**
+     * Method of searching movie function.
+     * movie title and director can be used to search
+     */
+    private void searchMovie()
+    {
+        System.out.print("1. Searching movie by title;\n" + 
+                             "2. Searching movie by director name;\n" +
+                             "Input your choice (1 or 2): ");
+        int choice = InputInt();
+        if (choice == 1)
+            searchTitleDisplay();
+        else if (choice == 2)
+            searchDirectorsDisplay();
+        else
+        {
+            System.out.println("Wrong Input.\nThe input choice must be 1 or 2." + 
+                                    "Please input your choice again. \n");
+            searchMovie();
+        }
+    }
+    
+    /**
+     * This method is used to search movie and display by title.
+     * In this method, particial title is accepted.
+     */
+    private ArrayList<Movie> searchTitleDisplay()
+    {
+        System.out.print("Please input a movie title : ");
+        String movieTitle = InputString();
+        while (movieTitle.equals(""))
+        {
+            System.out.println("Error: The movie title cannot be empty!\n" +
+                                    "Please input it again.");
+            System.out.print("Please input a movie title : ");
+            movieTitle = InputString();
+        }
+        return searchTitle(movieTitle);
+    }
+    
+    /**
+     * searching the movie by partitial title.
+     * 
+     * @param   partTitle
+     */
+    private ArrayList<Movie> searchTitle(String partTitle)
+    {
+        ArrayList<Movie> searchedList = movies.searchByTitle(partTitle);
+        if (searchedList.size() == 0)
+            System.out.println("No movie matched!");
+        else
+            displayMovie(searchedList);
+        return searchedList;
+    }
+    
+    /**
+     * This method is used to search movie and display by director name.
+     * The name must be the full name.
+     * particial name will not be be accepted in this method.
+     * More than one director are accepted in this searching function.
+     */
+    private void searchDirectorsDisplay()
+    {
+        System.out.print("How many director do you prefer to search: ");
+        int number = InputInt();
+        if (number < 0)
+        {
+            System.out.println("Wrong Input!\n");
+            searchDirectorsDisplay();
+        }
+        else
+            searchDirectors(number);
+    }
+    
+    /**
+     * searching movie by full director name.
+     * 
+     * @param   number. the number of directors
+     */
+    private void searchDirectors(int number)
+    {
+        ArrayList<Movie> movieList = new ArrayList<>();
+        for (int i = 0; i < number; i++)
+            movieList.addAll(searchOneDirector(i));  // combine the matched movie together
+        if (movieList.size() == 0)
+            System.out.println("No movie matched!");
+        else
+            displayMovie(movieList);  
+    }
+    
+    /**
+     * This method is used to search movie by only one director.
+     * 
+     * @param   i, the sequnce of the diretory
+     * @return  searchedList, the list of matching movie.
+     */
+    private ArrayList<Movie> searchOneDirector(int i)
+    {
+        System.out.print("Please input director " + (i + 1) + " full name : ");
+        String directorName = InputString();
+        if (directorName.equals(""))
+        {
+            System.out.println("Error: Input director cannot be empty!\n" +
+                                    "Please input it again.\n");
+            searchOneDirector(i);
+        }
+        ArrayList<Movie> searchedList = movies.searchByDirector(directorName);
+        return searchedList;
+    }
+    
+    // ++++++++++++++++++++++++++++++ adding ++++++++++++++++++++++++++++++++ //
+    
+    /**
+     * method is the main method for adding new movie.
+     * Only the uneque movie title can be added in the movie collection.
+     */
+    private void addMovie()
+    {
+        Movie newMovie = new Movie();
+        newMovie.setTitle(inputTitle());
+        newMovie.setDirector(inputDirector());
+        newMovie.setActorList(buildActorList());
+        newMovie.setRating(inputRating());
+        movies.addMovie(newMovie);
+    }
+    
+    /**
+     * set title for new movie
+     * 
+     * @param title
+     */
+    private String inputTitle()
+    {
+        System.out.print("Please input a new movie title : ");
+        String title = InputString();
+        if (isInputEmpty(title) || isTitleExist(title))
+            inputTitle();
+        return title;     
+    }
+    
+    /**
+     * check the input would be empty.
+     * 
+     * @param   title
+     * @return  boolean
+     */
+    private boolean isInputEmpty(String input)
+    {
+        if (input.trim().length() == 0)
+        {
+            System.out.println("Error: your input is empty.");
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * check if the input title exist.
+     * 
+     * @param   title
+     * @return  boolean
+     */
+    private boolean isTitleExist(String title)
+    {
+        for (int i = 0; i < movies.movieListSize(); i++)
+            if (movies.getOneMovie(i).getTitle().toLowerCase().equals(title.toLowerCase()))
+            {
+                System.out.println("The movie \"" + title + "\" already exist.");
+                return true;
+            }
+        return false;
+    }
+    
+    /**
+     * set director name for new movie
+     * 
+     * @return  direcName.
+     */
+    private String inputDirector()
+    {
+        System.out.print("Please input a new movie director : ");
+        String direcName = InputString();
+        if (isInputEmpty(direcName) || isNameIllegal(direcName))
+            inputDirector();
+        return direcName;
+    }
+    
+    /**
+     * check if the input name contains any special charactor.
+     * 
+     * @param   name
+     * @return  boolean
+     */
+    private boolean isNameIllegal(String name)
+    {
+        for (int i = 0; i < name.trim().length(); i++)
+            if (name.charAt(i) != 32 && (name.charAt(i) < 'A' || name.charAt(i) > 'z' ||
+                    (name.charAt(i) > 'Z' && name.charAt(i) < 'a')))
+            {
+                System.out.println("The name \"" + name + "\" contains illegal charactor.\n" + 
+                                        "Only character A to z and space are accepted.");
+                return true;
+            }
+        return false;
+    }
+    
+    
+    /**
+     * build a actor collection
+     * 
+     * @param   a actor list
+     * @return  object of actor collection.
+     */
+    private ActorCollection buildActorList()
+    {
+        ActorCollection actors = new ActorCollection();
+        for (int i = 0; i < 3; i++)
+            actors.addActor(inputOneActor(i));
+        if (isSameActor(actors))
+        {
+            System.out.println("The three actor cannot be same.");
+            buildActorList();
+        }
+        if (isAllActorEmpty(actors))
+        {
+            System.out.println("You must input at least one actor.");
+            buildActorList();
+        }
+        return actors;
+    }
+    
+    /**
+     * Check the same actor
+     * 
+     * @param   actor list
+     * @return  boolean.
+     */
+    private boolean isSameActor(ActorCollection actors)
+    {
+        for (int i = 0; i < (actors.actorListSize() - 1); i++)
+            for (int j = (1 + i); j < actors.actorListSize(); j++)
+                if (actors.getOneActor(i).getActorName().toLowerCase().
+                        equals(actors.getOneActor(j).getActorName().toLowerCase()) &&
+                        !actors.getOneActor(i).getActorName().toLowerCase().isEmpty())
+                    return true;
+        return false;
+    }
+    
+    /**
+     * check all actors are empty.
+     */
+    private boolean isAllActorEmpty(ActorCollection actors)
+    {
+        for (int i = 0; i < actors.actorListSize(); i++)
+            if (!actors.getOneActor(i).getActorName().isEmpty())
+                return false;
+        return true;
+    }
+    
+    /**
+     * set one actor into actor list
+     * 
+     * @param   i, sequence of the actor
+     * @retun   actor object.
+     */
+    private Actor inputOneActor(int i)
+    {
+        Actor oneActor = new Actor();
+        System.out.print("Please input actor " + (i + 1) + " name : ");
+        String name = InputString();
+        if (isNameIllegal(name))
+            inputOneActor(i);
+        oneActor.setActorName(name);
+        return oneActor;
+    }
+    
+    /**
+     * set rating into new movie
+     * 
+     * @return   rating.
+     */
+    private String inputRating()
+    {
+        System.out.print("Please input the rating of movie : ");
+        String rating = InputString();
+        if (isRatingWrong(rating))
+            inputRating();
+        return rating;
+    }
+    
+    /**
+     * check if the input rating is number and in range.
+     * 
+     * @param   rating
+     * @return  boolean
+     */
+    private boolean isRatingWrong(String rating)
+    {
+        int rate = 0;
+        try
+        {
+            rate = Integer.parseInt(rating.trim());
+        }
+        catch (NumberFormatException e)
+        {
+            System.out.println("Rating must be a number.");
+            return true;
+        }
+        if (rate < 1 || rate > 10)
+        {
+            System.out.println("Input rating must be in range of 1 - 10.");
+            return true;
+        }
+        return false;
+    }
+    
+    
+    // +++++++++++++++++++++++++++++ deleting +++++++++++++++++++++++++++++++++ //
+    
+    /**
+     * Method of movie deletion function
+     */
+    private void deleteMovie()
+    {
+        System.out.println("You can input partial movie title to select deleting.");
+        ArrayList<Movie> deleteList = searchTitleDisplay();
+        if (deleteList.size() != 0)
+        {
+            selectMovies(deleteList);
+        }
+            
+    }
+    
+    
+    /**
+     * delete specific movie.
+     * 
+     * @param   arraylist of movie
+     */
+    private void selectMovies(ArrayList<Movie> deleteList)
+    {
+        boolean select = true;
+        while (select)
+        {
+            System.out.print("Which one do you want to delete (type the number) : ");
+            int inputSequence = InputInt();
+            if (inputSequence < 1 || inputSequence > deleteList.size())
+                System.out.println("Sorry! your input is wrong.");
+            movies.deleteMovie(deleteList.get(inputSequence - 1));
+            System.out.print("Done!\nDo you want to delete more (y/n) ?  ");
+            String choice = InputString();
+            if (!(choice.toLowerCase().equals("y") || choice.toLowerCase().equals("yes")))
+                select = false;
+        }
+    }
+    
+    
+    // +++++++++++++++++++++++++++++++ fovorite movie ++++++++++++++++++++++++++//
+    
+    /**
+     * display the favor movies.
+     */
+    private void favouriteMovies()
+    {
+        System.out.print("Please type your favor rating: ");
+        ArrayList<Movie> favorMovie = movies.listFavorMovie(InputInt());
+        if (favorMovie.size() == 0)
+            System.out.println("SORRY: No movie satisfy your rating.");
+        else
+            displayMovie(favorMovie);
+        
+    }
+    
+    
+    // +++++++++++++++++++++++++  edit movie +++++++++++++++++++++++++++++++ //
+    
+    /**
+     * select editing movie
+     * 
+     * @return  one movie
+     */
+    private Movie selectMovie()
+    {
+        System.out.println("Input Editing movie.");
+        ArrayList<Movie> selecting = searchTitleDisplay();
+        if (selecting.size() == 1)
+            return searchTitleDisplay().get(0);
+        System.out.print("Which one do you want to edit (type the number) : ");
+        int inputSequence = InputInt();
+        return selecting.get(inputSequence - 1); 
+    }
+    
+    /**
+     * find out the target movie in movie collection
+     */
+    private Movie determineTarget(Movie oneMovie)
+    {
+        for (int i = 0; i < movies.movieListSize(); i++)
+            if (movies.getOneMovie(i).getTitle().equals(oneMovie.getTitle()))
+                return movies.getOneMovie(i);
+        return oneMovie;
+    }
+    
+    /**
+     * choice edit part, (actors or rating)
+     */
+    private void editMovie()
+    {
+        Movie aMovie = selectMovie();
+        System.out.print("which part do you want to edit (select the number) ? \n" + 
+                                "1. Actors \n2. Rating\nYour Choice : ");
+        String choice = InputString();
+        switch (choice)
+        {
+            case "1":
+                determineTarget(aMovie).setActorList(buildActorList());     break;
+            case "2":
+                determineTarget(aMovie).setRating(inputRating());           break;
+            default:
+                System.out.println("Illegal input.");
+        }
+    }
+    
+    
+    // ========================================= main method ========================================//
+    
+    public void display()
+    {
+        boolean exitValue = true;
+        recordMovieCollection();
+        while(exitValue)
+        {
+            System.out.print('\u000C');
+            titleDisplay();
+            menuDisplay();
+            exitValue = functionChoice(InputString());
+        }
+    }
+}

@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=movies\ fileName
+comment0.target=void\ writeFileCheck(java.util.ArrayList,\ java.lang.String)
+comment0.text=\r\n\ Check\ if\ the\ file\ exist\r\n
+comment1.params=movies\ fileName
+comment1.target=void\ writeToFile(java.util.ArrayList,\ java.lang.String)
+comment1.text=\r\n\ write\ the\ movie\ collection\ in\ to\ the\ file\r\n\ \r\n\ @param\ \ \ movies,\ the\ movie\ collection\r\n\ \ \ \ \ \ \ \ \ \ fileName,\ inut\ the\ file\ name\r\n
+numComments=2

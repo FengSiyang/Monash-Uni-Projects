@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=
+comment0.target=int\ rollDice()
+comment0.text=\r\n\ This\ method\ creat\ the\ action\ dice\ rolling\r\n\ Result\ will\ be\ a\ integer\ between\ 1\ to\ 6\r\n\ \r\n\ @return\ \ \ \ \ 1\ +\ (int)(Math.random()*6),\ the\ random\ integer\ between\ 1\ to\ 6\r\n
+comment1.params=
+comment1.target=void\ displayDice()
+comment1.text=\r\n\ This\ method\ is\ used\ to\ test\ the\ rendom\ result\r\n\ For\ testing\r\n
+numComments=2

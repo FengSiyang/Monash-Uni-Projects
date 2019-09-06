@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=
+comment0.target=ActorCollection()
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ ActorCollection\r\n
+comment1.params=newActor
+comment1.target=void\ addActor(Actor)
+comment1.text=\r\n\ Add\ a\ new\ actor\ into\ actor\ collection\r\n\ \r\n\ @param\ \ \ newActor\r\n
+comment2.params=i
+comment2.target=Actor\ getOneActor(int)
+comment2.text=\r\n\ Get\ one\ actor\ from\ the\ actor\ list\r\n\ \r\n\ @param\ \ \ i,\ the\ sequence\ of\ the\ actor\r\n\ @return\ \ the\ specific\ actor\ object\r\n
+comment3.params=newActors
+comment3.target=void\ setActorList(java.util.ArrayList)
+comment3.text=\r\n\ Set\ one\ actor\ arraylist\ in\ to\ actors\r\n\ \r\n\ @param\ \ \ newActors\r\n
+comment4.params=
+comment4.target=java.util.ArrayList\ getActorList()
+comment4.text=\r\n\ Get\ the\ actor\ list\r\n\ \r\n\ @return\ \ actors\r\n
+comment5.params=
+comment5.target=java.lang.Integer\ actorListSize()
+comment5.text=\r\n\ get\ the\ size\ of\ the\ actor\ list\r\n\ \r\n\ @return\ \ collection\ size\r\n
+numComments=6

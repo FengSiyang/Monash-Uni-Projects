@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.params=newFileName
+comment0.target=java.util.ArrayList\ readCheckFile(java.lang.String)
+comment0.text=\r\n\ read\ the\ text\ file\ to\ the\ text\ line\ collection\r\n\ each\ line\ contains\ movie\ title,\ director,\ actors\ and\ rating.\r\n\ check\ if\ the\ file\ exist\ or\ if\ is\ there\ any\ I/O\ error.\r\n\ \r\n\ @return\ \ movieInfo,\ a\ line\ of\ a\ movie\ information\r\n
+numComments=1

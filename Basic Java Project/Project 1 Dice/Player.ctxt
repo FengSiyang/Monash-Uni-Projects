@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Player()
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Player\r\n
+comment1.params=name
+comment1.target=void\ setName(java.lang.String)
+comment1.text=\r\n\ Set\ player's\ name\r\n\ \r\n\ @param\ \ \ \ \ \ name\r\n
+comment2.params=
+comment2.target=java.lang.String\ getName()
+comment2.text=\r\n\ Get\ player's\ name\ from\ setName(String)\ method\ into\ playerName\r\n\ \r\n\ @return\ \ \ \ \ the\ player\ name\ which\ is\ set\ before\r\n
+comment3.params=position
+comment3.target=void\ setPosition(int)
+comment3.text=\r\n\ Set\ player's\ position\r\n\ \r\n\ @param\ \ \ \ \ \ player's\ position\ which\ is\ set\ before\r\n
+comment4.params=
+comment4.target=int\ getPosition()
+comment4.text=\r\n\ Get\ player's\ position\ from\ method\ setPosition(int)\r\n\ \r\n\ @return\ \ \ \ \ playerPosition\r\n
+comment5.params=
+comment5.target=void\ display()
+comment5.text=\r\n\ Display\ the\ player's\ name\ and\ position\r\n\ For\ testing\r\n
+numComments=6
