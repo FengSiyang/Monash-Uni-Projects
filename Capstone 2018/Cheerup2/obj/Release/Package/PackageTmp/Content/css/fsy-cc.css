@@ -1,0 +1,248 @@
+﻿#pls {
+    padding-top: 1em;
+    padding-bottom: 3em;
+}
+
+
+#pls-title {
+    margin-top: 20px;
+    font-family: "Comic Sans MS", Courier, 'Times New Roman';
+    text-align: center;
+    padding-bottom: 1em;
+}
+
+#pls-picture {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10%;
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+#pls h3 {
+    padding-top: 2em;
+    padding-bottom: 0.8em;
+    text-transform: capitalize;
+    font-family: "Comic Sans MS", Courier, 'Times New Roman';
+}
+
+#pls p {
+    text-transform: none;
+    font-family: "Comic Sans MS", Courier, 'Times New Roman';
+}
+
+.block ol {
+    font-family: "Roboto", sans-serif;
+    line-height: 22px;
+    font-size: 16px;
+    font-weight: 300;
+    color: #727272;
+}
+
+.block h4 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #727273;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+}
+
+#fact-img-fsy {
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+#sign-img-fsy {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 60px;
+    border: .5px solid #433a3a;
+    padding: 5px;
+    width: 85%;
+    background-color: white;
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 50px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 25px;
+}
+
+#know-info-fsy {
+    margin-top: 30px;
+}
+
+/* bubble css in sports indivisual part */
+.speech {
+    position: relative;
+    width: auto;
+    height: auto;
+    text-align: center;
+    line-height: 80px;
+    /*background-color: #8daedb;*/
+    background-color:rgba(22, 157, 160, 0.1);
+    box-shadow: 5px 5px 20px #888;
+    border-bottom-left-radius: 40%;
+    border-top-right-radius: 40%;
+    border-bottom-right-radius: 10%;
+    margin-top: 100px;
+}
+
+.speech-right {
+    position: relative;
+    width: auto;
+    height: auto;
+    text-align: center;
+    line-height: 80px;
+    /*background-color: #8daedb;*/
+    background-color:rgba(236, 93, 23, 0.10);
+    box-shadow: 5px 5px 20px #888;
+    border-top-left-radius: 40%;
+    border-bottom-right-radius: 40%;
+    border-bottom-left-radius: 10%;
+    margin-top: 100px;
+}
+
+.head-sports img {
+    max-width: 100%;
+    height: auto;
+    margin: 0px;
+    margin-top: 40px;
+
+}
+
+.speech p {
+    
+    padding-left: 20px;
+    padding-right: 100px;
+    padding-top: 40px;
+    padding-bottom: 10px;
+    text-align: left;
+    font-family: "Comic Sans MS", Courier, 'Times New Roman';
+}
+
+.speech-right p {
+    /*padding-left: 20px;
+    padding-right: 100px;
+    padding-top: 40px;
+    padding-bottom: 10px;
+    text-align: left;
+    font-family: "Comic Sans MS", Courier, 'Times New Roman';*/
+    padding-right: 20px;
+    padding-left: 100px;
+    padding-bottom: 20px;
+    padding-top: 50px;
+    text-align: right;
+    font-family: "Comic Sans MS", Courier, 'Times New Roman';
+}
+
+/*.img-res-fsy {
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 50px 0 rgba(0, 0, 0, 0.19);
+}*/
+
+
+.descrip-box {
+    position: relative;
+    width: auto;
+    height: auto;
+    text-align: justify;
+    line-height: 80px;
+    /*background-color: #8daedb;*/
+    background-color: rgba(219, 67, 6, 0.20) /*#db4306*/;
+    box-shadow: 5px 3px 20px #888;
+    border-radius: 15px;
+    margin-bottom: 3%;
+    margin-top: 3%;
+}
+
+.descrip-box > h1, h2, h3, h4, h5, p {
+    font-family: "Comic Sans MS", Courier, 'Times New Roman';
+}
+
+.descrip-box > h1, h2, h3, h4, h5 {
+    padding: 2%;
+}
+
+.descrip-box > p {
+    padding-bottom: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+#nature-table {
+    padding: 2%;
+}
+
+.card-design {
+    width: auto;
+    margin-top: 10%;
+    box-shadow: 7px 5px 25px #2c383a;
+}
+
+.list-group-item.active {
+    z-index: 2;
+    color: #fff;
+    background-color: #75CAEB;
+    border-color: #75CAEB;
+}
+
+/* landing text */
+.cc-textbox-1 {
+    position: absolute;
+    top: 30%;
+    left: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.cc-textbox-2 {
+    position: absolute;
+    margin-top:20px;
+    top: 47%;
+    left: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding-left: 20px;
+    padding-right: 0px;
+}
+
+
+.landing-text {
+    text-align: left;
+}
+
+.cc-btn-read {
+    position: absolute;
+    top: 67%;
+    left: 20px;
+    font-size: 24px;
+}
+
+
+/* sports button choose box shadow*/
+.spots-button {
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 50px 0 rgba(0, 0, 0, 0.19);
+    margin: 0 auto;
+}
+
+/* facebook API in the middle of the page*/
+.fb-box {
+    /*margin: 0 auto;*/
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+
+/* scroll up button on the right bottom of the page */
+.btn-right {
+    font-size: 25px;
+    color: rgba(0, 0, 0, 0.54);
+    position: fixed;
+    right: 50px;
+    bottom: 30px;
+}
+
+.btn-right:hover {
+    color: rgba(15, 193, 178, 0.69)
+}

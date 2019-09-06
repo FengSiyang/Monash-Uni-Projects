@@ -1,0 +1,196 @@
+﻿@model Cheerup2.Models.naturePlace
+@{
+    ViewBag.Title = "I want this place";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <title>Geocoding Service</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+        #map {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #floating-panel {
+            position: absolute;
+            top: 10px;
+            left: 25%;
+            z-index: 5;
+            background-color: #fff;
+            padding: 5px;
+            border: 1px solid #999;
+            text-align: center;
+            font-family: 'Roboto','sans-serif';
+            line-height: 30px;
+            padding-left: 10px;
+        }
+    </style>
+
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="icon" href="favicon.ico">
+    <title>Timer Agency Template</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- Template CSS Files
+    ================================================== -->
+    <!-- Twitter Bootstrs CSS -->
+    <link href="~/Content/plugins/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <!-- Ionicons Fonts Css -->
+    <link href="~/Content/plugins/ionicons/ionicons.min.css" rel="stylesheet" />
+    <!-- animate css -->
+    <link href="~/Content/plugins/animate-css/animate.css" rel="stylesheet" />
+    <!-- Hero area slider css-->
+    <link href="~/Content/plugins/slider/slider.css" rel="stylesheet" />
+    <!-- owl craousel css -->
+    <link href="~/Content/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Content/plugins/owl-carousel/owl.theme.css" rel="stylesheet" />
+    <!-- Fancybox -->
+    <link href="~/Content/plugins/facncybox/jquery.fancybox.css" rel="stylesheet" />
+    <!-- template main css file -->
+    <link href="~/Content/bootstrap-lumen.css" rel="stylesheet" />
+    <link href="~/Content/newcss/style.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <link href="~/Content/css/cc.css" rel="stylesheet" />
+    <link href="~/Content/css/fsy-cc.css" rel="stylesheet" />
+    <style>
+        html, body {
+            background-color: rgba(221, 245, 249, 0.14);
+        }
+    </style>
+</head>
+<body onload="initMap">
+
+
+
+    <!--
+    ==================================================
+    Header Section Start
+    ================================================== -->
+    <!--
+    ==================================================
+        Global Page Section Start
+    ================================================== -->
+    <section class="global-page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="block">
+
+                        <ol class="breadcrumb" style="font-family: 'Comic Sans MS', Courier, 'Times New Roman'">
+                            <li>
+                                <a href="/Home/Index">
+                                    <i class="ion-ios-home"></i>
+                                    Home
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/naturePlaces/Nature">
+                                    Back to Nature
+                                </a>
+                            </li>
+                            <li class="active">Beautiful Place</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pls-detail" id="pls">
+        <div class="container wow fadeInUp animated subtitle" data-wow-delay=".3s" data-wow-duration="500ms">
+            <h2 class="subtitle" id="pls-title">@Model.placeName</h2>
+            <div class="row">
+                <div class="col-md-5">
+                    <img id="pls-picture" src="@Url.Content(Model.url)" />
+                </div>
+                <div class="col-md-7">
+                    <div class="text-center">
+                        <h3>Description</h3>
+                        <p>@Model.Detail</p>
+                        <h3>Address</h3>
+                        <p>@Model.address</p>
+                        <h3>Suggested Activities and Sports</h3>
+                        <p>@Model.sportSuggestions</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <div class="container" style="height:100%; width:60%">
+        <div id="floating-panel" style="display:none">
+            <input id="address" type="text" value="@Model.address">
+            <input id="submit" type="button" value="Geocode">
+        </div>
+        <div id="map" style="width:60%" height="30%"></div>
+    </div>
+    
+    <script>
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 17,
+                center: { lat: -34.397, lng: 150.644 }
+            });
+            var geocoder = new google.maps.Geocoder();
+
+            document.getElementById('submit').addEventListener('click', function () {
+                geocodeAddress(geocoder, map);
+            });
+
+            document.getElementById("submit").click();
+        }
+
+        function geocodeAddress(geocoder, resultsMap) {
+            var address = document.getElementById('address').value;
+            geocoder.geocode({ 'address': address }, function (results, status) {
+                if (status === 'OK') {
+                    resultsMap.setCenter(results[0].geometry.location);
+                    var marker = new google.maps.Marker({
+                        map: resultsMap,
+                        position: results[0].geometry.location
+                    });
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbImPVWtwsJZcoKA2ZFZSL7KWdAyJ6fsA&callback=initMap">
+    </script>
+
+    <div style="margin:70px"></div>
+
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,241 @@
+﻿
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="icon" href="~/Content/imgs/favicon.ico">
+    <title>Home page</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- Template CSS Files
+    ================================================== -->
+    <!-- Twitter Bootstrs CSS -->
+    <link href="~/Content/plugins/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <!-- Ionicons Fonts Css -->
+    <link href="~/Content/plugins/ionicons/ionicons.min.css" rel="stylesheet" />
+    <!-- animate css -->
+    <link href="~/Content/plugins/animate-css/animate.css" rel="stylesheet" />
+    <!-- Hero area slider css-->
+    <link href="~/Content/plugins/slider/slider.css" rel="stylesheet" />
+    <!-- owl craousel css -->
+    <link href="~/Content/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Content/plugins/owl-carousel/owl.theme.css" rel="stylesheet" />
+    <!-- Fancybox -->
+    <link href="~/Content/plugins/facncybox/jquery.fancybox.css" rel="stylesheet" />
+    <!-- template main css file -->
+    <link href="~/Content/bootstrap-lumen.css" rel="stylesheet" />
+    <link href="~/Content/newcss/style.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <link href="~/Content/css/fsy-cc.css" rel="stylesheet" />
+
+    <style>
+        .hero-button-container {
+            padding: 100px 0;
+        }
+
+        .hero-home-buttons {
+            position: relative;
+            display: inline-block;
+            padding: 1.2em 2em;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            color: black;
+            font-weight: bold;
+            font-size: 1.2em;
+            width: 150px;
+        }
+
+            .hero-home-buttons::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.3);
+                border-radius: 4px;
+                transition: box-shadow .5s ease, -webkit-transform .2s ease;
+                transition: box-shadow .5s ease, transform .2s ease;
+                transition: box-shadow .5s ease, transform .2s ease, -webkit-transform .2s ease;
+                will-change: transform;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            }
+
+            .hero-home-buttons:hover::before {
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+
+        .hero-button-position:first-child {
+            margin-right: 8em;
+        }
+
+        .hero-button-position:last-child {
+            margin-left: 8em;
+        }
+
+        /* text in landing page, including buttons */
+        /*.landing-text {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }*/
+
+        /* landing page background image */
+        .land-back > img {
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            height: auto;
+            opacity: 0.7;
+        }
+        /* slide images */
+        .mySlides {
+            display: none;
+        }
+    </style>
+
+</head>
+<body>
+
+
+    <!--
+    ==================================================
+    Header Section Start
+    ================================================== -->
+    <!--
+    ==================================================
+    Slider Section Start
+    ================================================== -->
+    <section @*id="hero-area"*@>
+        <div class="land-back">
+            <img class="mySlides" src="~/Content/imgs/landImage.jpg" alt="Landing Page" />
+            <img class="mySlides" src="~/Content/imgs/landing3.jpg" alt="Landing Page" />
+            <img class="mySlides" src="~/Content/imgs/landing4.png" alt="Landing Page" />
+
+            <div class="abc cc-textbox-1">
+                <br><h1 class="wow fadeInUp animated cd-headline slide" data-wow-delay=".4s" style="font-family: 'Comic Sans MS', Courier, 'Times New Roman'; "><font size="28">Stay Health. Stay Happy. </font></h1><br>
+            </div>
+
+            <div class="abc cc-textbox-2">
+                <br><h4 class="wow fadeInUp animated cd-headline slide" data-wow-delay=".5s" style="font-family:'Roboto', sans-serif; line-height: 50px; padding:0px; font-size:40px">Did You Know <span id="cc-lines" style="font-size: 60px">0</span> Australians are Living with Depression or Anxiety.</h4><br />
+                @*<button type="button" class="btn cc-btn-read" onclick="location.href = '/DidUKnow/DidYouKnow'">Read More</button>*@
+            </div>
+
+            <button type="button" class="btn cc-btn-read" style="margin-top:55px" onclick="location.href = '/DidUKnow/DidYouKnow'">Read More</button>
+        </div>
+
+        @*<div class="cc-land-container">
+            <div class="row">
+                <div class="col-md-12 text-center landing-text">
+                    <div class="block wow fadeInUp" data-wow-delay=".3s">*@
+                        <!-- Slider -->
+                        @*<section class="cd-intro">
+                            @*<h1 class="wow fadeInUp animated cd-headline slide" data-wow-delay=".4s" style="font-family: 'Comic Sans MS', Courier, 'Times New Roman'">
+            <span>Stay healthy. Stay happy</span><br>
+            <span class="cd-words-wrapper">
+                <b class="is-visible">This plugin only <span id="cc-lines">0</span> lines of code.</b>
+
+            </span>
+        </h1>*@
+
+                    @*<div class="abc cc-textbox-1">
+                        <h1 class="wow fadeInUp animated cd-headline slide" data-wow-delay=".4s" style="font-family: 'Comic Sans MS', Courier, 'Times New Roman'; "><font size="24">Stay Health. Stay Happy.</font></h1><br>
+                    </div>
+
+                    <div class="abc cc-textbox-2">
+                        <p class="wow fadeInUp animated cd-headline slide" data-wow-delay=".5s" style="font-family: 'Comic Sans MS', Courier, 'Times New Roman'"><font size="20">Do you know <span id="cc-lines">0</span> Australians are living with depression or anxiety.</font></p><br>
+                    </div>*@
+
+                        </section>
+                        @*<div class="hero-button-container wow fadeInUp animated cd-headline slide" data-wow-delay=".9s" style="font-family: 'Comic Sans MS', Courier, 'Times New Roman'">
+                            <a href="/Home/sports" class="hero-home-buttons hero-button-position"> Sports</a>
+                            <a href="/naturePlaces/Nature" class="hero-home-buttons hero-button-position">Nature</a>
+                            <a href="/Home/Know" class="hero-home-buttons hero-button-position" style="width:200px;">Did you know</a>
+                        </div>*@
+
+                        <!-- cd-intro -->
+                        <!-- /.slider -->
+                        <!-- <i class="icon ion-ios-basketball"></i>  <h2 class="wow fadeInUp animated" data-wow-delay=".6s">
+                            With 10 years experience, I've occupied many roles including digital design director,<br> web designer and developer. This site showcases some of my work.
+                        </h2> -->
+
+    </section><!--/#main-slider-->
+    <!--
+    ==================================================
+    About Section Start
+    ================================================== -->
+    <!--
+    ==================================================
+    Footer Section Start
+    ================================================== -->
+    <!-- Template Javascript Files
+    ================================================== -->
+    <script>
+        // slide images with JS
+        var myIndex = 0;
+        carousel();
+
+        function carousel() {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            myIndex++;
+            if (myIndex > x.length) { myIndex = 1 }
+            x[myIndex - 1].style.display = "block";
+            setTimeout(carousel, 5000); // Change image every 2 seconds
+        }
+    </script>
+
+    <!-- jquery -->
+    @*<script src="plugins/jQurey/jquery.min.js"></script>*@
+    <script src="~/Content/plugins/jQurey/jquery.min.js"></script>
+    <!-- Form Validation -->
+    @*<script src="plugins/form-validation/jquery.form.js"></script>*@
+    <script src="~/Content/plugins/form-validation/jquery.form.js"></script>
+    @*<script src="plugins/form-validation/jquery.validate.min.js"></script>*@
+    <script src="~/Content/plugins/form-validation/jquery.validate.min.js"></script>
+    <!-- owl carouserl js -->
+    @*<script src="plugins/owl-carousel/owl.carousel.min.js"></script>*@
+    <script src="~/Content/plugins/owl-carousel/owl.carousel.min.js"></script>
+    <!-- bootstrap js -->
+    @*<script src="plugins/bootstrap/bootstrap.min.js"></script>*@
+    <script src="~/Content/plugins/bootstrap/bootstrap.min.js"></script>
+    <!-- wow js -->
+    @*<script src="plugins/wow-js/wow.min.js"></script>*@
+    <script src="~/Content/plugins/wow-js/wow.min.js"></script>
+    <!-- slider js -->
+    @*<script src="plugins/slider/slider.js"></script>*@
+    <script src="~/Content/plugins/slider/slider.js"></script>
+    <!-- Fancybox -->
+    @*<script src="plugins/facncybox/jquery.fancybox.js"></script>*@
+    <script src="~/Content/plugins/facncybox/jquery.fancybox.js"></script>
+    <!-- template main js -->
+    @*<script src="js/main.js"></script>*@
+    <script src="~/Content/js/main.js"></script>
+
+    <script src="~/Content/js/jquery.animateNumber.js"></script>
+    <script src="~/Content/js/cc.js"></script>
+
+</body>
+</html>

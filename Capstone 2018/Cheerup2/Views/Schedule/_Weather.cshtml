@@ -1,0 +1,93 @@
+﻿@model Cheerup2.Models.naturePlace
+
+@*<script src="~/Content/js/weather.js" crossorigin=""></script>
+<link href="~/Content/css/weather.css" rel="stylesheet" />*@
+@*<script src="~/Content/js/weather.js" crossorigin=""></script>*@
+
+<div>
+    <div class='wrapper' style="background-color:rgba(53, 136, 196, 0.70)">
+
+        <search>
+            <form>
+                <input class='searchbar transparent' id='search' type='text' placeholder='enter city, country' value="@Model.weatherCity" />
+                <input class='button transparent' id='button' type="submit" value='GO' />
+
+            </form>
+        </search>
+
+        <div class='panel'>
+            <h2 class='city' id='city'></h2>
+            <div class='weather' id='weather'>
+                <div class='group secondary'>
+                    <h3 id='dt'></h3>
+                    <h3 id='description'></h3>
+                </div>
+                <div class='group secondary'>
+                    <h3 id='wind'></h3>
+                    <h3 id='humidity'></h3>
+                </div>
+                <div class='temperature' id='temperature'>
+                    <h1 class='temp' id='temp'><i id='condition'></i> <span id='num'></span><a class='fahrenheit active' id='fahrenheit' href="#">&deg;F</a><span class='divider secondary'>|</span><a class='celsius' id='celsius' href="#">&deg;C</a></h1>
+                </div>
+                <div class='forecast' id='forecast'></div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div style="font-family:'Comic Sans MS', 'Courier', 'Times New Roman'">
+        select day: <select name="Day" id="ddlday" onchange="leaveChange()">
+
+            <option value="All">All </option>
+
+        </select>
+
+        <table class="table table-hover table-active">
+            @*<tr id="row1"><td>Day :<input id='d1' type='text' /></td><td> Max Temperature:<input id='ct1' type='text' /></td><td> Suggestion:<input id='sg1' type='text' style="width:550px" /></td></tr>
+            <tr id="row2"><td>Day :<input id='d2' type='text' /></td><td> Max Temperature:<input id='ct2' type='text' /></td><td> Suggestion:<input id='sg2' type='text' style="width:550px" /></td></tr>
+            <tr id="row3"><td>Day :<input id='d3' type='text' /></td><td> Max Temperature:<input id='ct3' type='text' /></td><td> Suggestion:<input id='sg3' type='text' style="width:550px" /></td></tr>
+            <tr id="row4"><td>Day :<input id='d4' type='text' /></td><td> Max Temperature:<input id='ct4' type='text' /></td><td> Suggestion:<input id='sg4' type='text' style="width:550px" /></td></tr>
+            <tr id="row5"><td>Day :<input id='d5' type='text' /></td><td> Max Temperature:<input id='ct5' type='text' /></td><td> Suggestion:<input id='sg5' type='text' style="width:550px" /></td></tr>*@
+            <thead>
+                <tr>
+                  <th scope="col" style="width:15%">Day</th>
+                  <th scope="col" style="width:auto">Max Temperature</th>
+                  <th scope="col" style="width:100%" >Suggestions</th>
+                </tr>
+            </thead>
+              <tbody>
+                <tr id="row1">
+                  <td id="d1">@*<input id='d1' type='text' style="width:100%" />*@</td>
+                  <td id="ct1">@*<input id='ct1' type='text' style="width:100%" />*@</td>
+                  <td id="sg1">@*<input id='sg1' type='text' style="width:100%" />*@</td>
+                  
+                </tr>
+                <tr id="row2">
+                    <td id="d2">@*<input id='d2' type='text' style="width:100%" />*@</td>
+                    <td id="ct2">@*<input id='ct2' type='text' style="width:100%" />*@</td>
+                    <td id="sg2">@*<input id='sg2' type='text' style="width:100%" />*@</td>
+                </tr>
+                <tr id="row3">
+                    <td id="d3">@*<input id='d3' type='text' style="width:100%" />*@</td>
+                    <td id="ct3">@*<input id='ct3' type='text' style="width:100%" />*@</td>
+                    <td id="sg3">@*<input id='sg3' type='text' style="width:100%" />*@</td>
+                </tr>
+                <tr id="row4">
+                    <td id="d4">@*<input id='d4' type='text' style="width:100%" />*@</td>
+                    <td id="ct4">@*<input id='ct4' type='text' style="width:100%" />*@</td>
+                    <td id="sg4">@*<input id='sg4' type='text' style="width:100%" />*@</td>
+                </tr>
+                <tr id="row5">
+                    <td id="d5">@*<input id='d5' type='text' style="width:100%" />*@</td>
+                    <td id="ct5">@*<input id='ct5' type='text' style="width:100%" />*@</td>
+                    <td id="sg5">@*<input id='sg5' type='text' style="width:100%" />*@</td>
+                </tr>
+                
+           </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="~/Content/js/weather.js" crossorigin=""></script>
+

@@ -1,0 +1,131 @@
+﻿a
+@{
+    ViewBag.Title = "Did You Know";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="icon" href="favicon.ico">
+    <title>Timer Agency Template</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- Template CSS Files
+    ================================================== -->
+    <!-- Twitter Bootstrs CSS -->
+    <link href="~/Content/plugins/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <!-- Ionicons Fonts Css -->
+    <link href="~/Content/plugins/ionicons/ionicons.min.css" rel="stylesheet" />
+    <!-- animate css -->
+    <link href="~/Content/plugins/animate-css/animate.css" rel="stylesheet" />
+    <!-- Hero area slider css-->
+    <link href="~/Content/plugins/slider/slider.css" rel="stylesheet" />
+    <!-- owl craousel css -->
+    <link href="~/Content/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Content/plugins/owl-carousel/owl.theme.css" rel="stylesheet" />
+    <!-- Fancybox -->
+    <link href="~/Content/plugins/facncybox/jquery.fancybox.css" rel="stylesheet" />
+    <!-- template main css file -->
+    <link href="~/Content/bootstrap-lumen.css" rel="stylesheet" />
+    <link href="~/Content/newcss/style.css" rel="stylesheet" />
+
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <link href="~/Content/css/fsy-cc.css" rel="stylesheet" />
+    <style>
+        html, body {
+            background-color: rgba(221, 245, 249, 0.14);
+        }
+    </style>
+    <!-- JS chart -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+</head>
+<body>
+
+
+    <!--
+    ==================================================
+    Header Section Start
+    ================================================== -->
+    <!--
+    ==================================================
+        Global Page Section Start
+    ================================================== -->
+    <section id="top">
+        @Html.Partial("_PositionBar", (String)ViewBag.Title)
+
+
+        <div class="btn-right">
+            <a href="#top" class="glyphicon glyphicon-chevron-up"><br />Top</a>
+        </div>
+
+
+        <!--
+        ==================================================
+            Company Description Section Start
+            Facts part
+        ================================================== -->
+        @Html.Partial("_Facts")
+
+        <!--
+        ==================================================
+                  Data visaulization
+        ================================================== -->
+        @Html.Partial("_Statistics")
+
+
+
+
+        <!--
+        ==================================================
+                  Signs and Symptoms
+        ================================================== -->
+        @Html.Partial("_Signs")
+
+
+    </section>
+
+
+
+    <script src="~/Content/plugins/jQurey/jquery.min.js"></script>
+    <!-- Form Validation -->
+
+    <script src="~/Content/plugins/form-validation/jquery.form.js"></script>
+
+    <script src="~/Content/plugins/form-validation/jquery.validate.min.js"></script>
+    <!-- owl carouserl js -->
+
+    <script src="~/Content/plugins/owl-carousel/owl.carousel.min.js"></script>
+    <!-- bootstrap js -->
+
+    <script src="~/Content/plugins/bootstrap/bootstrap.min.js"></script>
+    <!-- wow js -->
+
+    <script src="~/Content/plugins/wow-js/wow.min.js"></script>
+    <!-- slider js -->
+
+    <script src="~/Content/plugins/slider/slider.js"></script>
+    <!-- Fancybox -->
+
+    <script src="~/Content/plugins/facncybox/jquery.fancybox.js"></script>
+    <!-- template main js -->
+    <script src="~/Content/js/main.js"></script>
+
+
+
+</body>
+</html>
+
+
+

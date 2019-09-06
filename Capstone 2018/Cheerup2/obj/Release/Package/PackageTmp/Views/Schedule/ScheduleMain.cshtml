@@ -1,0 +1,223 @@
+﻿@model IEnumerable<Cheerup2.Models.naturePlace>
+@{
+    ViewBag.Title = "Your Schedule";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="icon" href="favicon.ico">
+    <title>Timer Agency Template</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- Template CSS Files
+    ================================================== -->
+    <!-- Twitter Bootstrs CSS -->
+    <link href="~/Content/plugins/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <!-- Ionicons Fonts Css -->
+    <link href="~/Content/plugins/ionicons/ionicons.min.css" rel="stylesheet" />
+    <!-- animate css -->
+    <link href="~/Content/plugins/animate-css/animate.css" rel="stylesheet" />
+    <!-- Hero area slider css-->
+    <link href="~/Content/plugins/slider/slider.css" rel="stylesheet" />
+    <!-- owl craousel css -->
+    <link href="~/Content/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Content/plugins/owl-carousel/owl.theme.css" rel="stylesheet" />
+    <!-- Fancybox -->
+    <link href="~/Content/plugins/facncybox/jquery.fancybox.css" rel="stylesheet" />
+    <!-- template main css file -->
+    <link href="~/Content/newcss/style.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-lumen.css" rel="stylesheet" />
+    <link href="~/Content/css/fsy-cc.css" rel="stylesheet" />
+
+    <style>
+        html, body {
+            background-color: rgba(221, 245, 249, 0.14);
+            background-image: url('../../Content/images/schedule/bkground-schedule-new.jpg');
+            /*background-image: url('../../Content/images/schedule/bk-schedule.jpg');*/
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+    </style>
+
+    
+</head>
+<body>
+
+
+    <!--
+    ==================================================
+    Header Section Start
+    ================================================== -->
+    <!--
+    ==================================================
+        Global Page Section Start
+    ================================================== -->
+    @Html.Partial("_PositionBar", (String)ViewBag.Title)
+
+
+    <!--
+    discription of schedule, give the indicator of the schedule function
+    -->
+    <div class="container">
+        @*<div class="descrip-box animated fadeIn">
+                <h3> Introduction of schedule.</h3>
+                <p>disfb djsim isnal jfsnkf sknfsbk djsibfsl nsubf isbf isnf </p>
+                <!-- Ask question form + results -->
+                <div class="descrip-box animated fadeIn" style="animation-delay:0.5s;background-color: rgba(214, 248, 250, 0.61);">
+                    <form style="padding:30px">
+                        <fieldset>
+
+                            <h3>Choose your prefer activity: </h3>
+                            <p>
+                                <label for="sports"><input type="radio" id="sports" name="activity-select" value="sports">  Sports</label><br />
+                                <label for="nature"><input type="radio" id="nature" name="activity-select" value="nature">  Nature</label><br />
+                                <br />
+                                <input type="submit" value="Submit now">
+                            </p>
+
+                        </fieldset>
+                    </form>
+
+
+
+                </div>
+            </div>*@
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 col-xs-12">
+                @Html.Partial("_Decision")
+
+
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
+        <div id="xxx"></div>
+        <div id="nature-table" style="margin-top:50px">
+            @Html.Partial("_NatureSlt")
+        </div>
+
+        <div id="sp-sch">
+
+        </div>
+
+
+
+    </div>
+
+
+    <div class="container" style="margin-bottom: 150px">
+        @Html.Partial("_SportsSlt")
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Template Javascript Files
+    ================================================== -->
+    <!-- jquery -->
+    <script src="~/Content/plugins/jQurey/jquery.min.js"></script>
+    <!-- Form Validation -->
+
+    <script src="~/Content/plugins/form-validation/jquery.form.js"></script>
+
+    <script src="~/Content/plugins/form-validation/jquery.validate.min.js"></script>
+    <!-- owl carouserl js -->
+
+    <script src="~/Content/plugins/owl-carousel/owl.carousel.min.js"></script>
+    <!-- bootstrap js -->
+
+    <script src="~/Content/plugins/bootstrap/bootstrap.min.js"></script>
+    <!-- wow js -->
+
+    <script src="~/Content/plugins/wow-js/wow.min.js"></script>
+    <!-- slider js -->
+
+    <script src="~/Content/plugins/slider/slider.js"></script>
+    <!-- Fancybox -->
+
+    <script src="~/Content/plugins/facncybox/jquery.fancybox.js"></script>
+    <!-- template main js -->
+    <script src="~/Content/js/main.js"></script>
+    @*<script src="~/Content/js/cc.js"></script>*@
+
+    <script type="text/javascript">
+        // Schedule main part !
+        // intro button click
+        $("#intro-schedule").click(function () {
+            $("#des-schedule").hide();
+            $("#first-question").show();
+            $("#nature-question").hide();
+            $("#sports-question").hide();
+            console.info(1);
+        });
+
+        // q1 sports click
+        function choose_clk(clicked_id) {
+            var x = document.getElementById("nature-question");
+            //alert(clicked_id);
+            document.getElementById("first-question").style.display = "none";
+            if (clicked_id == "q1-nature") {
+                x.style.display = "block";
+                
+                console.log(2);
+            }
+            if (clicked_id == "q1-sports") {
+                x = document.getElementById("sports-question");
+                x.style.display = "block";
+                console.log(3);
+            }
+            if (clicked_id == "q2-na-in") {
+                document.getElementById("in-nature").style.display = "block";
+                document.getElementById("out-nature").style.display = "none";
+            }
+            if (clicked_id == "q2-na-out") {
+                document.getElementById("in-nature").style.display = "none";
+                document.getElementById("out-nature").style.display = "block";
+            }
+            if (clicked_id == "q2-sp-1") {
+                document.getElementById("0-1").style.display = "block";
+                document.getElementById("2-3").style.display = "none";
+                document.getElementById("4-more").style.display = "none";
+            }
+            if (clicked_id == "q2-sp-2") {
+                document.getElementById("0-1").style.display = "none";
+                document.getElementById("2-3").style.display = "block";
+                document.getElementById("4-more").style.display = "none";
+            }
+            if (clicked_id == "q2-sp-3") {
+                document.getElementById("0-1").style.display = "none";
+                document.getElementById("2-3").style.display = "none";
+                document.getElementById("4-more").style.display = "block";
+            }
+
+
+        }
+    </script>
+
+</body>
+</html>
+

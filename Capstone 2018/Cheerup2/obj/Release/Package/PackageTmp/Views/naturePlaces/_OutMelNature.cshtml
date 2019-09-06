@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Cheerup2.Models.naturePlace>
+
+<div class="row cc-row  cc-container" id="photos">
+    @{
+        var i = 0;
+        foreach (var item in Model)
+        {
+            if (item.Tag == "Outside")
+            {
+                <div class="col-sm-4 col-xs-12">
+                    <figure class="wow fadeInLeft animated" data-wow-duration="500ms" data-wow-delay="@((i * 300) + "ms")" style="visibility: visible; animation-duration: 300ms; -webkit-animation-duration: 300ms; animation-delay: @((i * 300) + "ms"); -webkit-animation-delay: @((i * 300) + "ms"); animation-name: fadeInLeft; -webkit-animation-name: fadeInLeft">
+                        <div class="img-wrapper shadow-lg">
+                            <img class="img-responsive" id="img-res-fsy" src="@Url.Content(item.url)" alt="Photo" />
+                            <div class="overlay">
+                                <div class="buttons fancybox" style="font-family: 'Comic Sans MS', Courier, 'Times New Roman'">
+                                    @Html.ActionLink(item.placeName, "PicDetail", new { id = item.Id })
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+                </div>
+                i++;
+            }
+
+        }
+    }
+</div>

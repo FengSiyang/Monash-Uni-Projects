@@ -1,0 +1,204 @@
+﻿@model IEnumerable<Cheerup2.Models.naturePlace>
+
+@{
+    ViewBag.Title = "Back to Nature";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="icon" href="favicon.ico">
+    <title>Timer Agency Template</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- Template CSS Files
+    ================================================== -->
+    <!-- Twitter Bootstrs CSS -->
+    <link href="~/Content/plugins/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <!-- Ionicons Fonts Css -->
+    <link href="~/Content/plugins/ionicons/ionicons.min.css" rel="stylesheet" />
+    <!-- animate css -->
+    <link href="~/Content/plugins/animate-css/animate.css" rel="stylesheet" />
+    <!-- Hero area slider css-->
+    <link href="~/Content/plugins/slider/slider.css" rel="stylesheet" />
+    <!-- owl craousel css -->
+    <link href="~/Content/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Content/plugins/owl-carousel/owl.theme.css" rel="stylesheet" />
+    <!-- Fancybox -->
+    <link href="~/Content/plugins/facncybox/jquery.fancybox.css" rel="stylesheet" />
+    <!-- template main css file -->
+    <link href="~/Content/bootstrap-lumen.css" rel="stylesheet" />
+    <link href="~/Content/newcss/style.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <link href="~/Content/css/cc.css" rel="stylesheet" />
+    <link href="~/Content/css/fsy-cc.css" rel="stylesheet" />
+    <style>
+        html, body {
+            background-color: rgba(221, 245, 249, 0.14);
+        }
+    </style>
+</head>
+<body>
+
+
+    <!--
+    ==================================================
+    Header Section Start
+    ================================================== -->
+    <!--
+    ==================================================
+        Global Page Section Start
+    ================================================== -->
+    
+    @Html.Partial("_PositionBar", (String)ViewBag.Title)
+
+
+    <!--=============================
+    =            Gallery            =
+    ==============================-->
+    <section id="gallery" class="gallery cc-gallery" style="padding-bottom: 40px">
+        <div class="container">
+            <div class="alert alert-dismissible alert-info" id="nature-choose" style="display:inline-block;">
+                @*<button type="button" class="close" data-dismiss="alert">&times;</button>*@
+
+                <strong style="font-family: 'Comic Sans MS', Courier, 'Times New Roman'; font-size: 25px;">Where Do You Want to Explore?</strong>
+                <p><br /></p>
+                <div class="cc-btn" style="font-family: 'Comic Sans MS', Courier, 'Times New Roman'">
+                    <button type="button" id="inside" onclick="clickDisplay(this.id)" class="btn btn-outline-secondary btn-inout" style="margin:10px">In Melbourne</button>
+                    @*<button id="inside" class="btn-in">In Melbourne</button>*@
+                    <button type="button" id="outside" onclick="clickDisplay(this.id)" class="btn btn-outline-secondary btn-inout" style="margin:10px">Out of Melbourne</button>
+                    @*<button id="outside" class="btn-out">Out of Melbourne</button>*@
+                    <button type="button" id="event-nat" class="btn btn-outline-secondary btn-inout" style="margin:10px">Organized Nature Activity</button>
+                </div>
+            </div>
+            @*<h2 class="subtitle wow fadeInUp animated" data-wow-delay=".3s" data-wow-duration="500ms" style="font-family: 'Comic Sans MS', Courier, 'Times New Roman'">Where Do You Want to Explore?</h2>
+            <div class="cc-btn" style="font-family: 'Comic Sans MS', Courier, 'Times New Roman'">
+                <button type="button" id="inside" onclick="clickDisplay(this.id)" class="btn btn-outline-info btn-inout" style="margin:10px">In Melbourne</button>
+                
+                <button type="button" id="outside" onclick="clickDisplay(this.id)" class="btn btn-outline-info btn-inout">Out of Melbourne</button>
+                
+            </div>*@
+            <div class="nature-total" style="display:block" id="nature-more">
+                <!-- display first 6 nature picture -->
+                <div class="row cc-row  cc-container" id="photos">
+                    @{
+                        var i = 0;
+                        foreach (var item in Model)
+                        {
+                            <div class="col-sm-4 col-xs-12">
+                                <figure class="wow fadeInLeft animated" data-wow-duration="500ms" data-wow-delay="@((i * 300) + "ms")" style="visibility: visible; animation-duration: 300ms; -webkit-animation-duration: 300ms; animation-delay: @((i * 300) + "ms"); -webkit-animation-delay: @((i * 300) + "ms"); animation-name: fadeInLeft; -webkit-animation-name: fadeInLeft">
+                                    <div class="img-wrapper shadow-lg">
+                                        <img class="img-responsive" id="img-res-fsy" src="@Url.Content(item.url)" alt="Photo" />
+                                        <div class="overlay">
+                                            <div class="buttons fancybox" style="font-family: 'Comic Sans MS', Courier, 'Times New Roman'">
+                                                @Html.ActionLink(item.placeName, "PicDetail", new { id = item.Id })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </figure>
+                            </div>
+                            i++;
+                            if (i == 6)
+                            {
+                                break;
+                            }
+                        }
+
+                    }
+                </div>
+                <div class="cc-more" style="font-family: 'Comic Sans MS', Courier, 'Times New Roman'">
+                    <div class="col-md-11"></div>
+                    <div class="col-md-1 col-xs-12">
+                        <a id="more-nature" onclick="clickDisplay(this.id)" href="#">More > </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- click more and display no show in normal -->
+            <div class="nature-more" style="display:none" id="all-nature">
+                @Html.Partial("_AllNature")
+            </div>
+
+            <!-- inside mel hide in normal -->
+            <div class="inside" style="display:none" id="in-nature">
+                @Html.Partial("_InMelNature")
+            </div>
+
+            <!-- outside mel hide in normal -->
+            <div class="outside" style="display:none" id="out-nature">
+                @Html.Partial("_OutMelNature")
+            </div>
+
+        </div>
+</section>
+
+    <!--Nature Even API facebook -->
+    <section class="works service-page" id="even-nature" style="padding-top:40px; display:block">
+        <div class="container">
+            <h2 class="subtitle" style="padding-bottom: 20px; font-family: 'Comic Sans MS', Courier, 'Times New Roman'">Activity Events You May Like</h2>
+            <div class="col-md-3"></div>
+            <div class="col-md-9 col-xs-12" id="nature-fb">
+                <div id="fb-root"></div>
+                <script>
+                    (function (d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id)) return;
+                        js = d.createElement(s); js.id = id;
+                        js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1';
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));</script>
+
+                <div class="fb-page" data-width="500" data-href="https://www.facebook.com/pg/NewToMelb/events/" data-tabs="events" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false"><blockquote cite="https://www.facebook.com/pg/NewToMelb/events/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/pg/NewToMelb/events/">New To Melbourne</a></blockquote></div>
+            </div>
+            @*<div id="fb-root"></div>
+            <script>
+                (function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s); js.id = id;
+                    js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1';
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));</script>
+
+            <div class="fb-page" data-width="500" data-href="https://www.facebook.com/pg/NewToMelb/events/" data-tabs="events" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false"><blockquote cite="https://www.facebook.com/pg/NewToMelb/events/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/pg/NewToMelb/events/">New To Melbourne</a></blockquote></div>*@
+        </div>
+    </section>
+
+
+
+
+    <!-- Template Javascript Files
+    ================================================== -->
+    <!-- jquery -->
+    <script src="plugins/jQurey/jquery.min.js"></script>
+    <!-- Form Validation -->
+    <script src="plugins/form-validation/jquery.form.js"></script>
+    <script src="plugins/form-validation/jquery.validate.min.js"></script>
+    <!-- owl carouserl js -->
+    <script src="plugins/owl-carousel/owl.carousel.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="plugins/bootstrap/bootstrap.min.js"></script>
+    <!-- wow js -->
+    <script src="plugins/wow-js/wow.min.js"></script>
+    <!-- slider js -->
+    <script src="plugins/slider/slider.js"></script>
+    <!-- Fancybox -->
+    <script src="plugins/facncybox/jquery.fancybox.js"></script>
+    <!-- template main js -->
+    <script src="js/main.js"></script>
+    <script src="~/Content/js/cc.js"></script>
+</body>
+</html>
+

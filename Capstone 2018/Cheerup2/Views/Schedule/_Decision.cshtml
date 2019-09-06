@@ -1,0 +1,103 @@
+﻿<script type="text/javascript">
+    // scroll down function
+    $(document).ready(function () {
+        $("a").on('click', function (event) {
+            if (this.hash !== "") {
+                //event.preventDefault();
+                var hash = this.hash;
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top
+                }, 800, function () {
+                    window.location.hash = hash;
+                });
+            }
+        });
+    });
+</script>
+
+<!-- Introduction Part -->
+<div class="animated slideInRight" id="des-schedule" style="display:block; margin-bottom:100px">
+    <div class="card border-info mb-3 card-design" id="intro">
+        <h3 class="card-header">Schedule Description</h3>
+        <img style="height: 400px; width: 100%; display: block;" src="~/Content/images/schedule.jpg" alt="Card image">
+        <div class="card-body">
+            <p class="card-text">Suggest the appropriate physical activities and sports based on your selection. Provide weather condition and route for natural spaces you would like to visit. </p>
+        </div>
+
+        <div class="card-footer text-muted">
+            <button id="intro-schedule" type="button" class="btn btn-outline-info intro-schedule" style="float:right; font-family:'Comic Sans MS', Courier, 'Times New Roman'">Continue</button>
+        </div>
+    </div>
+</div>
+
+<!-- First Question -->
+<div class="animated slideInRight" id="first-question" style="display:none">
+    <div class="card border-info mb-3 card-design" id="first-ques">
+        <h3 class="card-header">Question One</h3>
+        
+        <img style="height: 400px; width: 100%; display: block;" src="~/Content/images/active-or-peace.jpg" alt="Card image">
+        <div class="card-body">
+            <p class="card-text">Do you enjoy playing the sports or prefer exploring the nature?</p>
+        </div>
+        <div class="list-group list-group-flush" style="font-family:'Comic Sans MS', Courier, 'Times New Roman'">
+            <a href="#" id="q1-sports" class="list-group-item list-group-item-action" onclick="choose_clk(this.id)">
+                Playing sports
+            </a>
+            <a href="#" id="q1-nature" class="list-group-item list-group-item-action" onclick="choose_clk(this.id)">
+                Exploring the nature
+            </a>
+
+        </div>
+        <div class="card-footer text-muted">
+
+        </div>
+    </div>
+</div>
+
+<!-- Nature Question -->
+<div class="animated slideInRight" id="nature-question" style="display:none">
+    <div class="card border-info mb-3 card-design" id="nature-ques">
+        <h3 class="card-header">Question Two: Nature</h3>
+        <img style="height: 400px; width: 100%; display: block;" src="~/Content/images/nature.jpg" alt="Card image">
+        <div class="card-body">
+            <p class="card-text">How far are you willing to travel?</p>
+        </div>
+        <div class="list-group list-group-flush" style="font-family:'Comic Sans MS', Courier, 'Times New Roman'">
+            <a href="#xxx" id="q2-na-in" class="list-group-item list-group-item-action" onclick="choose_clk(this.id)">
+                In the Melbourne city
+            </a>
+            <a href="#xxx" id="q2-na-out" class="list-group-item list-group-item-action" onclick="choose_clk(this.id)">
+                Far away from Melbourne city
+            </a>
+
+        </div>
+        <div class="card-footer text-muted">
+
+        </div>
+    </div>
+</div>
+
+<!-- Sports Question -->
+<div class="animated slideInRight" id="sports-question" style="display:none">
+    <div class="card border-info mb-3 card-design" id="sports-ques">
+        <h3 class="card-header">Question Two: Sports</h3>
+        <img style="height: 400px; width: 100%; display: block;" src="~/Content/images/sports.jpg" alt="Card image">
+        <div class="card-body">
+            <p class="card-text">How often do you exercise?</p>
+        </div>
+        <div class="list-group list-group-flush" style="font-family:'Comic Sans MS', Courier, 'Times New Roman'">
+            <a href="#xxx" id="q2-sp-1" class="list-group-item list-group-item-action" onclick="choose_clk(this.id)">
+                0 - 1 time a week
+            </a>
+            <a href="#xxx" id="q2-sp-2" class="list-group-item list-group-item-action" onclick="choose_clk(this.id)">
+                2 - 3 times a week
+            </a>
+            <a href="#xxx" id="q2-sp-3" class="list-group-item list-group-item-action" onclick="choose_clk(this.id)">
+                At least 4 times a week
+            </a>
+        </div>
+        <div class="card-footer text-muted">
+
+        </div>
+    </div>
+</div>

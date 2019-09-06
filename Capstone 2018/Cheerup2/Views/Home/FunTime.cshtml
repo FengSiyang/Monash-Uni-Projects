@@ -1,0 +1,510 @@
+﻿@{
+    /**/
+
+    ViewBag.Title = "Game";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<html>
+<head>
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="icon" href="favicon.ico">
+    <title>Timer Agency Template</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- Template CSS Files
+    ================================================== -->
+    <!-- Twitter Bootstrs CSS -->
+    <link href="~/Content/plugins/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <!-- Ionicons Fonts Css -->
+    <link href="~/Content/plugins/ionicons/ionicons.min.css" rel="stylesheet" />
+    <!-- animate css -->
+    <link href="~/Content/plugins/animate-css/animate.css" rel="stylesheet" />
+    <!-- Hero area slider css-->
+    <link href="~/Content/plugins/slider/slider.css" rel="stylesheet" />
+    <!-- owl craousel css -->
+    <link href="~/Content/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Content/plugins/owl-carousel/owl.theme.css" rel="stylesheet" />
+    <!-- Fancybox -->
+    <link href="~/Content/plugins/facncybox/jquery.fancybox.css" rel="stylesheet" />
+    <!-- template main css file -->
+    <link href="~/Content/bootstrap-lumen.css" rel="stylesheet" />
+    <link href="~/Content/newcss/style.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <link href="~/Content/css/cc.css" rel="stylesheet" />
+
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        html, body {
+            background-color: rgba(221, 245, 249, 0.14);
+        }
+    </style>
+</head>
+<body>
+    @Html.Partial("_PositionBar", (String)ViewBag.Title)
+
+
+    <div id="map" style="width:90%; height:95%; margin-left:5%"></div>
+    <script>
+
+
+function PuzzleDemo() {
+
+  this.polys_ = [];
+
+  this.difficulty_ = 'easy';
+
+  this.count_ = 0;
+
+  this.pieceDiv_ = null;
+
+  this.timeDiv_ = null;
+}
+
+PuzzleDemo.NUM_PIECES_ = 10;
+
+
+PuzzleDemo.START_COLOR_ = '#3c79de';
+
+PuzzleDemo.END_COLOR_ = '#037e29';
+
+PuzzleDemo.prototype.init = function(map) {
+  this.map_ = map;
+  this.createMenu_(map);
+  this.setDifficultyStyle_();
+ this.loadData_();
+};
+
+PuzzleDemo.prototype.createMenu_ = function(map) {
+  var menuDiv = document.createElement('div');
+  menuDiv.style.cssText =
+      'margin: 40px 10px; border-radius: 8px; height: auto; width: 180px;' +
+      'background-color: white; font-size: 14px; font-family: Roboto;' +
+      'text-align: center; color: grey;line-height: 32px; overflow: hidden';
+  var titleDiv = document.createElement('div');
+  titleDiv.style.cssText =
+      'width: 100%; background-color: #4285f4; color: white; font-size: 20px;' +
+      'line-height: 40px;margin-bottom: 24px';
+  titleDiv.innerText = 'Game Options';
+  var pieceTitleDiv = document.createElement('div');
+  pieceTitleDiv.innerText = 'PIECE:';
+  pieceTitleDiv.style.fontWeight = '800';
+  var pieceDiv = this.pieceDiv_ = document.createElement('div');
+  pieceDiv.innerText = '0 / ' + PuzzleDemo.NUM_PIECES_;
+  var timeTitleDiv = document.createElement('div');
+  timeTitleDiv.innerText = 'TIME:';
+  timeTitleDiv.style.fontWeight = '800';
+  var timeDiv = this.timeDiv_ = document.createElement('div');
+  timeDiv.innerText = '0.0 seconds';
+  var difficultyTitleDiv = document.createElement('div');
+  difficultyTitleDiv.innerText = 'DIFFICULTY:';
+  difficultyTitleDiv.style.fontWeight = '800';
+  var difficultySelect = document.createElement('select');
+  ['Easy', 'Moderate', 'Hard', 'Extreme'].forEach(function(level) {
+    var option = document.createElement('option');
+    option.value = level.toLowerCase();
+    option.innerText = level;
+    difficultySelect.appendChild(option);
+  });
+  difficultySelect.style.cssText =
+      'border: 2px solid lightgrey; background-color: white; color: #4275f4;' +
+      'padding: 6px;';
+  difficultySelect.onchange = function() {
+    this.setDifficulty_(difficultySelect.value);
+    this.resetGame_();
+  }.bind(this);
+  var resetDiv = document.createElement('div');
+  resetDiv.innerText = 'Reset';
+  resetDiv.style.cssText =
+      'cursor: pointer; border-top: 1px solid lightgrey; margin-top: 18px;' +
+      'color: #4275f4; line-height: 40px; font-weight: 800';
+  resetDiv.onclick = this.resetGame_.bind(this);
+  menuDiv.appendChild(titleDiv);
+  menuDiv.appendChild(pieceTitleDiv);
+  menuDiv.appendChild(pieceDiv);
+  //menuDiv.appendChild(timeTitleDiv);
+  //menuDiv.appendChild(timeDiv);
+  menuDiv.appendChild(difficultyTitleDiv);
+  menuDiv.appendChild(difficultySelect);
+  menuDiv.appendChild(resetDiv);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(menuDiv);
+};
+
+/**
+ * param {!google.maps.Map} map
+ */
+PuzzleDemo.prototype.render = function(map) {
+
+  if (!this.dataLoaded_) {
+    return;
+  }
+  this.start_();
+};
+
+/**
+ * private
+ */
+PuzzleDemo.prototype.loadData_ = function() {
+  var xmlhttpRequest = new XMLHttpRequest;
+  xmlhttpRequest.onreadystatechange = function() {
+    if (xmlhttpRequest.status != 200 ||
+        xmlhttpRequest.readyState != XMLHttpRequest.DONE) return;
+    this.loadDataComplete_(JSON.parse(xmlhttpRequest.responseText));
+  }.bind(this);
+  xmlhttpRequest.open(
+      'GET', 'https://storage.googleapis.com/mapsdevsite/json/puzzle.json',
+      true);
+  xmlhttpRequest.send(null);
+};
+
+/**
+ * param {!Array<{
+ *     bounds: !Array<!Array<number>>,
+ *     name: string,
+ *     start: !Array<string>,
+ *     end: !Array<string>
+ * }>} data
+ * private
+ */
+PuzzleDemo.prototype.loadDataComplete_ = function(data) {
+  this.dataLoaded_ = true;
+  this.countries_ = data;
+  this.start_();
+};
+
+/**
+ * param {string} difficulty
+ * private
+ */
+PuzzleDemo.prototype.setDifficulty_ = function(difficulty) {
+  this.difficulty_ = difficulty;
+
+  if (this.map_) {
+    this.setDifficultyStyle_();
+  }
+};
+
+/**
+ * private
+ */
+PuzzleDemo.prototype.setDifficultyStyle_ = function() {
+  var styles = {
+    'easy': [
+      {
+        stylers: [
+          { visibility: 'off' }
+        ]
+      },{
+        featureType: 'water',
+        stylers: [
+            { visibility: 'on' },
+            { color: '#d4d4d4' }
+        ]
+      },{
+        featureType: 'landscape',
+        stylers: [
+          { visibility: 'on' },
+          { color: '#e5e3df' }
+        ]
+      }, {
+        featureType: 'administrative.country',
+        elementType: 'labels',
+        stylers: [
+         { visibility: 'on' }
+        ]
+      }, {
+        featureType: 'administrative.country',
+        elementType: 'geometry',
+        stylers: [
+         { visibility: 'on' },
+         { weight: 1.3 }
+        ]
+      }
+    ],
+    'moderate': [
+      {
+        stylers: [
+          { visibility: 'off' }
+        ]
+      },{
+        featureType: 'water',
+        stylers: [
+            { visibility: 'on' },
+            { color: '#d4d4d4' }
+        ]
+      },{
+        featureType: 'landscape',
+        stylers: [
+          { visibility: 'on' },
+          { color: '#e5e3df' }
+        ]
+      }, {
+        featureType: 'administrative.country',
+        elementType: 'labels',
+        stylers: [
+         { visibility: 'on' }
+        ]
+      }
+    ],
+    'hard': [
+      {
+        stylers: [
+          { visibility: 'off' }
+        ]
+      },{
+        featureType: 'water',
+        stylers: [
+            { visibility: 'on' },
+            { color: '#d4d4d4' }
+        ]
+      },{
+        featureType: 'landscape',
+        stylers: [
+          { visibility: 'on' },
+          { color: '#e5e3df' }
+        ]
+      }
+    ],
+    'extreme': [
+      {
+        elementType: 'geometry',
+        stylers: [
+          { visibility: 'off' }
+        ]
+      }
+    ]
+  };
+
+  this.map_.set('styles', styles[this.difficulty_]);
+};
+
+/**
+ * private
+ */
+PuzzleDemo.prototype.resetGame_ = function() {
+  this.removeCountries_();
+  this.count_ = 0;
+  this.setCount_();
+  this.startClock_();
+
+  this.addRandomCountries_();
+};
+
+/**
+ * private
+ */
+PuzzleDemo.prototype.setCount_ = function() {
+  this.pieceDiv_.innerText = this.count_ + ' / ' + PuzzleDemo.NUM_PIECES_;
+
+  if (this.count_ == PuzzleDemo.NUM_PIECES_) {
+    this.stopClock_();
+  }
+};
+
+/**
+ * private
+ */
+PuzzleDemo.prototype.stopClock_ = function() {
+  window.clearInterval(this.timer_);
+};
+
+/**
+ * private
+ */
+PuzzleDemo.prototype.startClock_ = function() {
+  this.stopClock_();
+
+  var timeDiv = this.timeDiv_;
+  if (timeDiv) timeDiv.textContent = '0.0 seconds';
+  var t = new Date;
+
+  this.timer_ = window.setInterval(function() {
+    var diff = new Date - t;
+    if (timeDiv) timeDiv.textContent = (diff / 1000).toFixed(2) + ' seconds';
+  }, 100);
+};
+
+/**
+ * private
+ */
+PuzzleDemo.prototype.addRandomCountries_ = function() {
+  // Shuffle countries
+  this.countries_.sort(function() {
+    return Math.round(Math.random()) - 0.5;
+  });
+
+  var countries = this.countries_.slice(0, PuzzleDemo.NUM_PIECES_);
+  for (var i = 0, country; country = countries[i]; i++) {
+    this.addCountry_(country);
+  }
+};
+
+/**
+ * param {{
+ *   bounds: !Array<!Array<number>>,
+ *   name: string,
+ *   start: !Array<string>,
+ *   end: !Array<string>
+ * }} country
+ * private
+ */
+PuzzleDemo.prototype.addCountry_ = function(country) {
+  var options = {
+    strokeColor: PuzzleDemo.START_COLOR_,
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: PuzzleDemo.START_COLOR_,
+    fillOpacity: 0.35,
+    geodesic: true,
+    map: this.map_,
+    draggable: true,
+    zIndex: 2,
+    paths: country.start.map(google.maps.geometry.encoding.decodePath),
+  };
+
+  var poly = new google.maps.Polygon(options);
+  google.maps.event.addListener(poly, 'dragend', function() {
+    this.checkPosition_(poly, country);
+  }.bind(this));
+
+  this.polys_.push(poly);
+};
+
+/**
+ * Checks that every point in the polygon is inside the bounds.
+ * param {!Array<number>} bounds
+ * param {!google.maps.Polygon} poly
+ * returns {boolean}
+ */
+PuzzleDemo.prototype.boundsContainsPoly_ = function(bounds, poly) {
+  var b = new google.maps.LatLngBounds(
+      new google.maps.LatLng(bounds[0][0], bounds[0][1]),
+      new google.maps.LatLng(bounds[1][0], bounds[1][1]));
+  var paths = poly.getPaths().getArray();
+  for (var i = 0; i < paths.length; i++) {
+    var p = paths[i].getArray();
+    for (var j = 0; j < p.length; j++) {
+      if (!b.contains(p[j])) {
+        return false;
+      }
+    }
+  }
+  return true;
+};
+
+/**
+ * Replace a poly with the correct 'end' position of the country.
+ * param {google.maps.Polygon} poly
+ * param {Object} country
+ * private
+ */
+PuzzleDemo.prototype.replacePiece_ = function(poly, country) {
+  var options = {
+    strokeColor: PuzzleDemo.END_COLOR_,
+    fillColor: PuzzleDemo.END_COLOR_,
+    draggable: false,
+    zIndex: 1,
+    paths: country.end.map(google.maps.geometry.encoding.decodePath),
+  };
+
+  poly.setOptions(options);
+  this.count_++;
+  this.setCount_();
+};
+
+/**
+ * param {google.maps.Polygon} poly
+ * param {Object} country
+ * private
+ */
+PuzzleDemo.prototype.checkPosition_ = function(poly, country) {
+  if (this.boundsContainsPoly_(country.bounds, poly)) {
+    this.replacePiece_(poly, country);
+  }
+};
+
+/**
+ * private
+ */
+PuzzleDemo.prototype.start_ = function() {
+  this.setDifficultyStyle_();
+  this.resetGame_();
+};
+
+/**
+ * private
+ */
+PuzzleDemo.prototype.removeCountries_ = function() {
+  for (var i = 0, poly; poly = this.polys_[i]; i++) {
+    poly.setMap(null);
+  };
+
+  this.polys_ = [];
+};
+
+function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    disableDefaultUI: true,
+    center: {lat: 10, lng: 60},
+    zoom: 2
+  });
+
+  (new PuzzleDemo).init(map);
+}
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbImPVWtwsJZcoKA2ZFZSL7KWdAyJ6fsA&libraries=geometry&callback=initMap"
+            async defer></script>
+
+    <div style="margin:70px"></div>
+
+
+    <div class="cc-pop">
+        <!-- Trigger/Open The Modal -->
+        @*<button id="myBtn">Open Modal</button>*@
+
+        <!-- The Modal -->
+
+            <!-- Modal content -->
+
+                
+                <div id="cc-modal" class="card text-white bg-info mb-3 cc-modal">
+                    <span class="close">&times;</span>
+                    <div class="card-body" id="game-intro">
+                        <h4 class="card-title">Game Introduction</h4><br>
+                        <p class="card-text">1. There are 4 difficulty level that you can choose (Easy, Moderate, Hard, Extreme), and you may start with the easy level. </p><br>
+                        <p class="card-text">2. Once you open this page, the time starts to count, and you can use the reset button to reset both the time and puzzles. </p><br>
+                        <p class="card-text">3. Drag the blue country-puzzles to the correct location, so that the blue puzzle will change to green! </p>
+                        <button id="cc-pop-myBtn" type="button" class="btn btn-secondary">OK</button>
+                    </div>
+                </div>
+
+            </div>
+
+
+    <script src="~/Content/js/cc.js"></script>
+
+</body>
+</html>

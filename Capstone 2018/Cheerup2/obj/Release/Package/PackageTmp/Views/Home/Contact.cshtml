@@ -1,0 +1,229 @@
+﻿@{
+    ViewBag.Title = "About Us";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*<h2>@ViewBag.Title.</h2>
+    <h3>@ViewBag.Message</h3>*@
+
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="icon" href="favicon.ico">
+    <title>Timer Agency Template</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- Template CSS Files
+    ================================================== -->
+    <!-- Twitter Bootstrs CSS -->
+
+    <link href="~/Content/plugins/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <!-- Ionicons Fonts Css -->
+
+    <link href="~/Content/plugins/ionicons/ionicons.min.css" rel="stylesheet" />
+    <!-- animate css -->
+
+    <link href="~/Content/plugins/animate-css/animate.css" rel="stylesheet" />
+    <!-- Hero area slider css-->
+
+    <link href="~/Content/plugins/slider/slider.css" rel="stylesheet" />
+    <!-- owl craousel css -->
+
+    <link href="~/Content/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" />
+
+    <link href="~/Content/plugins/owl-carousel/owl.theme.css" rel="stylesheet" />
+    <!-- Fancybox -->
+
+    <link href="~/Content/plugins/facncybox/jquery.fancybox.css" rel="stylesheet" />
+    <!-- template main css file -->
+    <link href="~/Content/bootstrap-lumen.css" rel="stylesheet" />
+    <link href="~/Content/newcss/style.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <link href="~/Content/css/cc.css" rel="stylesheet" />
+    <style>
+        html, body {
+            background-color: rgba(221, 245, 249, 0.14);
+        }
+    </style>
+</head>
+<body>
+
+
+    <!--
+    ==================================================
+    Header Section Start
+    ================================================== -->
+    <header id="top-bar" class="navbar-fixed-top animated-header"></header>
+
+
+    <!--
+    ==================================================
+        Global Page Section Start
+    ================================================== -->
+    @Html.Partial("_PositionBar", (String)ViewBag.Title)
+
+
+    <!--
+    ==================================================
+        Contact Section Start
+    ================================================== -->
+    @*<section id="service-page" class="pages service-page cc-about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block">
+                            <div>
+                                <h2 class="subtitle wow fadeInUp animated" data-wow-delay=".3s" data-wow-duration="500ms">A Website by Students for Students</h2>
+                                <p class="subtitle-des wow fadeInUp animated" data-wow-delay=".4s" data-wow-duration="500ms">
+                                    Since every 1 third of an Australian university student is suffering from stress, anxiety or any other kind of mental health condition. Our Project “CheerupStudents” proposes a well-integrated website platform, focussing specifically on the university students who are on the verge of having a serious mental condition. This website will majorly focus on changing the behavior of students by providing credible and relevant information in an interesting way.<br><br>
+                                    Through rich data visualization, the website will provide some deep insights into the activities and sports that are available and most popular in Australia. Rich data visualization tools will also be utilized to make the website more beautiful and user-friendly. The website will further provide instructions about the outing events, parks and other activities available nearby. These activities may have a positive impact on their wellbeing and might encourage them to follow a healthy and active lifestyle.
+                                </p><br><br>
+                            </div>
+                            <h2 class="subtitle wow fadeInUp animated" data-wow-delay=".6s" data-wow-duration="500ms">Team Description</h2>
+                            <div class="row service-parts">
+                                <div class="col-md-6 jatin">
+                                    <div class="block wow fadeInUp animated" data-wow-duration="400ms" data-wow-delay="600ms">
+                                        <img src="~/Content/images/jatin.png" width="220" height="220"/>
+                                        <h4>Jatin Bhambhani</h4>
+                                        <p>Skills: Asp.net, MVC, MYSQL, AJAX, JavaScript, Datamanagement and warehousing.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 sonya" >
+                                    <div class="block wow fadeInUp animated" data-wow-duration="400ms" data-wow-delay="800ms">
+                                        <img src="~/Content/images/sonya.png" width="220" height="220" />
+                                        <h4>Siyang Feng</h4>
+                                        <p>Skills: Python, Data wrangling and processing, JavaScript and database design.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 yaman">
+                                    <div class="block wow fadeInUp animated" data-wow-duration="400ms" data-wow-delay="1s">
+                                        <img src="~/Content/images/jatin.png" width="220" height="220" />
+                                        <h4>Yaman Ahlawat</h4>
+                                        <p>Skills: UI/UX designing, Business analysis, Business intelligence and data warehouse .</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 chen">
+                                    <div class="block wow fadeInUp animated" data-wow-duration="400ms" data-wow-delay="1.1s">
+                                        <img src="~/Content/images/cc.png" width="220" height="220" />
+                                        <h4>Tianchen Chen</h4>
+                                        <p>Skills: Python, Data visualization, HTML, Data wrangling and processing.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="block">
+                            <img class="img-responsive" src="images/team.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>*@
+
+
+
+    <section id="about-info">
+        <div class="container block" id="about-info-back">
+            <div class="txt-about">
+                <h2 class="subtitle wow fadeInUp animated" data-wow-delay=".3s" data-wow-duration="500ms" style="font-family: 'Comic Sans MS', Courier, 'Times New Roman'">A Website by Students for Students</h2><br>
+                <p class="subtitle-des wow fadeInUp animated" data-wow-delay=".4s" data-wow-duration="500ms" style="font-family: 'Comic Sans MS', Courier, 'Times New Roman'">
+                    <font color="black">
+                        Since every 1 third of an Australian university student is suffering from stress, anxiety or any other kind of mental health condition. Our Project “CheerupStudents” proposes a well-integrated website platform, focussing specifically on the university students who are on the verge of having a serious mental condition. This website will majorly focus on changing the behavior of students by providing credible and relevant information in an interesting way.<br><br>
+                        Through rich data visualization, the website will provide some deep insights into the activities and sports that are available and most popular in Australia. Rich data visualization tools will also be utilized to make the website more beautiful and user-friendly. The website will further provide instructions about the outing events, parks and other activities available nearby. These activities may have a positive impact on their wellbeing and might encourage them to follow a healthy and active lifestyle.
+                    </font>
+                </p>
+            </div>
+            
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="cc-team">
+                <h2 class="subtitle wow fadeInUp animated" data-wow-delay=".6s" data-wow-duration="500ms" style="font-family: 'Comic Sans MS', Courier, 'Times New Roman'">Team Description</h2>
+                <div class="col-md-3">
+                    <div class="block wow fadeInUp animated" data-wow-duration="400ms" data-wow-delay="600ms" style="font-family: 'Comic Sans MS', Courier, 'Times New Roman'">
+                        <img src="~/Content/images/jatin.png" width="200" height="220" style="border-radius: 50%;" />
+                        <h3 style="font-family: 'Comic Sans MS', Courier, 'Times New Roman'">Jatin Bhambhani</h3>
+                        <p style="font-family: 'Comic Sans MS', Courier, 'Times New Roman'">Skills: MVC, MYSQL, JavaScript, Datamanagement and warehousing.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 sonya">
+                    <div class="block wow fadeInUp animated" data-wow-duration="400ms" data-wow-delay="800ms" style="font-family: 'Comic Sans MS', Courier, 'Times New Roman'">
+                        <img src="~/Content/images/sonya.png" width="200" height="220" style="border-radius: 50%;" />
+                        <h3 style="font-family: 'Comic Sans MS', Courier, 'Times New Roman'">Siyang Feng</h3>
+                        <p style="font-family: 'Comic Sans MS', Courier, 'Times New Roman'">Skills: Python, Data wrangling and processing, JavaScript, HTML and database design.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 yaman" style="font-family: 'Comic Sans MS', Courier, 'Times New Roman'">
+                    <div class="block wow fadeInUp animated" data-wow-duration="400ms" data-wow-delay="1s">
+                        <img src="~/Content/images/yaman.png" width="200" height="220" style="border-radius: 50%;" />
+                        <h3 style="font-family: 'Comic Sans MS', Courier, 'Times New Roman'">Yaman Ahlawat</h3>
+                        <p style="font-family: 'Comic Sans MS', Courier, 'Times New Roman'">Skills: UI/UX designing, Business analysis, Business intelligence and data warehouse .</p>
+                    </div>
+                </div>
+                <div class="col-md-3 chen">
+                    <div class="block wow fadeInUp animated" data-wow-duration="400ms" data-wow-delay="1.1s">
+                        <img src="~/Content/images/cc.png" width="200" height="220" style="border-radius: 50%;" />
+                        <h3 style="font-family: 'Comic Sans MS', Courier, 'Times New Roman'">Tianchen Chen</h3>
+                        <p style="font-family: 'Comic Sans MS', Courier, 'Times New Roman'">Skills: Python, Data visualization, HTML, Data wrangling and processing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+
+
+
+    <!--
+    ==================================================
+    Call To Action Section Start
+    ================================================== -->
+    <!--
+    ==================================================
+    Footer Section Start
+    ================================================== -->
+    <!-- /#footer -->
+    <!-- Template Javascript Files
+    ================================================== -->
+    <!-- jquery -->
+
+    <script src="~/Content/plugins/jQurey/jquery.min.js"></script>
+    <!-- Form Validation -->
+
+    <script src="~/Content/plugins/form-validation/jquery.form.js"></script>
+
+    <script src="~/Content/plugins/form-validation/jquery.validate.min.js"></script>
+    <!-- owl carouserl js -->
+
+    <script src="~/Content/plugins/owl-carousel/owl.carousel.min.js"></script>
+    <!-- bootstrap js -->
+
+    <script src="~/Content/plugins/bootstrap/bootstrap.min.js"></script>
+    <!-- wow js -->
+
+    <script src="~/Content/plugins/wow-js/wow.min.js"></script>
+    <!-- slider js -->
+
+    <script src="~/Content/plugins/slider/slider.js"></script>
+    <!-- Fancybox -->
+
+    <script src="~/Content/plugins/facncybox/jquery.fancybox.js"></script>
+    <!-- template main js -->
+    <script src="~/Content/js/main.js"></script>
+
+</body>
+</html>
+

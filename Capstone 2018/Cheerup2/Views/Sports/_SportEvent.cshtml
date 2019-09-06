@@ -1,0 +1,55 @@
+﻿<script type="text/javascript">
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        //function toggledisplay(clicked_id) {
+        //    var x = document.getElementById("fbapi");
+        //    //alert(clicked_id);
+        //    if (clicked_id == "TeamSports") {
+        //        x.style.display = "block";
+        //        console.log(5 + 6);
+        //    }
+        //    else if (clicked_id == "IndividualSports")
+        //        x.style.display = "none";
+
+            //if (x.style.display === "none") {
+            //x.style.display = "block";
+            //} else {
+            //x.style.display = "none";
+            //}
+        //}
+
+
+</script>
+
+
+
+
+<div class="container " id="spfb">
+    @* API Facebook *@
+    <div class="row" id="fbapi" style="display:none; margin-top:50px">
+        <div class="col-md-1"></div>
+        <div class="col-md-5 col-xs-12 fb-box">
+            @* API facebook first *@
+            <div id="fb-root"></div>
+            <div class="fb-page" data-width="450" data-href="https://www.facebook.com/pg/JETsport.au/events/" data-tabs="events" data-small-header="false" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true">
+                <blockquote cite="https://www.facebook.com/pg/JETsport.au/events/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/pg/JETsport.au/events/">JETsport</a></blockquote>
+            </div>
+        </div>
+        <div class="col-md-5 col-xs-12 fb-box">
+            @* API facebook second *@
+            <div id="fb-root"></div>
+            <div class="fb-page" data-width="450" data-href="https://www.facebook.com/InspireSportsGroup/events" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/InspireSportsGroup/events" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/InspireSportsGroup/events">Inspire Sports Group</a></blockquote></div>
+
+        </div>
+        <div class="col-md-1"></div>
+
+    </div>
+
+</div>
+

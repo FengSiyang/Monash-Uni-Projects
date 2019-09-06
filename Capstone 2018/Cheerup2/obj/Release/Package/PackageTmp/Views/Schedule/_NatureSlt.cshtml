@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Cheerup2.Models.naturePlace>
+
+
+
+
+<table class="table table-active" id="in-nature" style="display:none; font-size: larger; font-family:'Comic Sans MS', Courier, 'Times New Roman'">
+    <thead>
+        <tr>
+            <th scope="col">No.</th>
+            <th scope="col">Place Name</th>
+            <th scope="col">Weather Condition</th>
+            <th scope="col">Go There</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var i = 1;
+            foreach (var item in Model)
+            {
+                if (item.Tag == "Inside") { 
+                <tr>
+                    <th scope="row">@i</th>
+                    <td>@Html.ActionLink(item.placeName, "ScheduleDetial", new { id = item.Id })</td>
+                    <td>
+                        <a href="@Url.Action("ScheduleDetial", "Schedule", new { id = item.Id })#weather-position">Weather</a>
+                    @*@Html.ActionLink("Weather", "ScheduleDetial#weather-position", new { id = item.Id })*@</td>
+                    <td>
+                        <a href="@Url.Action("ScheduleDetial", "Schedule", new { id = item.Id })#map-position">@item.address</a>
+                    @*@Html.ActionLink(item.address, "ScheduleDetial", new { id = item.Id })*@</td>
+                </tr>
+                    i++;
+                }
+            }
+        }
+
+
+    </tbody>
+</table>
+
+<table class="table table-active" id="out-nature" style="display:none; font-size: larger; font-family:'Comic Sans MS', Courier, 'Times New Roman'">
+    <thead>
+        <tr>
+            <th scope="col">No.</th>
+            <th scope="col">Place Name</th>
+            <th scope="col">Weather Condition</th>
+            <th scope="col">Go There</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+        i = 1;
+        foreach (var item in Model)
+        {
+            if (item.Tag == "Outside")
+            {
+                <tr>
+                    <th scope="row">@i</th>
+                    <td>@Html.ActionLink(item.placeName, "ScheduleDetial", new { id = item.Id })</td>
+                    <td>
+                        <a href="@Url.Action("ScheduleDetial", "Schedule", new { id = item.Id })#weather-position">Weather</a>
+                        @*@Html.ActionLink("Weather", "ScheduleDetial#weather-position", new { id = item.Id })*@
+                    </td>
+                    <td>
+                        <a href="@Url.Action("ScheduleDetial", "Schedule", new { id = item.Id })#map-position">@item.address</a>
+                        @*@Html.ActionLink(item.address, "ScheduleDetial", new { id = item.Id })*@
+                    </td>
+                </tr>
+            i++;
+        }
+
+    }
+        }
+
+
+    </tbody>
+</table>

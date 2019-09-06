@@ -1,0 +1,93 @@
+﻿<style>
+    /*.nav li a {
+        font-family: "Comic Sans MS", 'Courier New', 'Times New Roman';
+    }*/
+
+    .nav li:hover {
+        /*background-color: #ff7f00;*/
+        -webkit-transform: rotate(3deg);
+        -moz-transform: rotate(3deg);
+        -ms-transform: rotate(3deg);
+        -o-transform: rotate(3deg);
+        transform: rotate(3deg);
+    }
+
+</style>
+
+<link href="~/Content/css/cc.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    $(function () {
+        var pull = $('#pull');
+        menu = $('nav ul');
+        menuHeight = menu.height();
+        $(pull).on('click', function (e) {
+            e.preventDefault();
+            menu.slideToggle();
+        });
+        $(window).resize(function () {
+            var w = $(window).width();
+            if (w > 320 && menu.is(':hidden')) {
+                menu.removeAttr('style');
+            }
+        });
+    });
+
+    
+</script>
+
+<div class="header">
+    <div class="container">
+        <div class="logo">
+            <a href="/Home/Index"><h1><img src="../../Content/images/logo-new.png" alt="" width="190" height="65"></h1></a>
+        </div>
+        <div class="menu">
+            <a class="toggleMenu" href="#"><img src="../../Content/images/navi-mobile.png" style="height:50px; width:50px" alt="" /> </a>
+            <ul class="nav" id="nav" style="display: block">
+                @*<li class="current"><a href="/Home/Index">Home</a></li>*@
+                <li><a href="/Home/Index">Home</a></li>
+                <li>
+                    @*<a href="/Home/Know">Did You Know</a>*@
+                    <a href="/DidUKnow/DidYouKnow">Did You Know</a>
+
+                </li>
+                @*<li>
+            <a href="/Sports/Sports">Sports</a>
+
+        </li>*@
+
+                <li>
+
+                    <a href="/Sports/Sports">Sports</a>
+
+                </li>
+
+                <li>
+                    <a href="/naturePlaces/Nature">Back to Nature</a>
+                    @*@Html.ActionLink("Fun Time", "FunTime", "Home", new { @class = "nav-link" })*@
+                </li>
+
+                <li>
+                    <a href="/Schedule/ScheduleMain">Schedule</a>
+                    @*@Html.ActionLink("Fun Time", "FunTime", "Home", new { @class = "nav-link" })*@
+                </li>
+                
+                <li>
+                    <a href="/Home/medicalHelp">Find your Gyms</a>
+                </li>
+
+                <li>
+                    <a href="/Home/FunTime">Game</a>
+                    @*@Html.ActionLink("Medical Help", "medicalHelp", "Home", new { @class = "nav-link" })*@
+                </li>
+                <li><a href="/Home/Contact">About Us</a></li>
+                @**<li><a href="/Home/About">About Us</a></li>*@
+                @*<li><a href="/Account/Login">Login</a></li>/
+        <li><a href="/Account/Register">Register</a></li>*@
+            </ul>
+            <script type="text/javascript" src="../../Content/js/responsive-nav.js"></script>
+        </div>
+        <div class="clearfix"> </div>
+        <!----//End-top-nav---->
+    </div>
+</div>

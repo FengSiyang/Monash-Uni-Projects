@@ -1,0 +1,118 @@
+﻿
+<!-- scroll down function css -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+@*<script src="scroll-down.js"></script>*@
+
+<script type="text/javascript">
+    // click function
+    function toggledisplay(clicked_id) {
+        var x = document.getElementById("fbapi");
+        //alert(clicked_id);
+        if (clicked_id == "TeamSports") {
+            x.style.display = "block";
+            console.log(5 + 6);
+        }
+    //    if (clicked_id == "IndividualSports") {
+    //        x = document.getElementById("cc-img-wrapper");
+    //        x.style.display = "block";
+    //    }
+            
+    }
+
+
+    // scroll down function
+    $(document).ready(function () {
+        $("a").on('click', function (event) {
+            if (this.hash !== "") {
+                event.preventDefault();
+                var hash = this.hash;
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top
+                }, 800, function () {
+                    window.location.hash = hash;
+                });
+            }
+        });
+    });
+</script>
+<style>
+    .card-header {
+        font-family: "Comic Sans MS", Courier, 'Times New Roman';
+        font-size: 20px;
+    }
+</style>
+
+
+
+@*<section class="cc-sports">
+    <div class="container">
+        <h2 class="subtitle wow fadeInUp animated cc-q" data-wow-delay=".3s" data-wow-duration="500ms">Do You Prefer Individual Exercise or Team Sports?</h2>
+        <div class="row cc-row  cc-container" id="sports-bottons">
+            <div class="col-sm-1 col-xs-12"></div>
+            <div class="col-sm-4 col-xs-12">
+                <figure class="wow fadeInLeft animated portfolio-item animated" data-wow-duration="500ms" data-wow-delay="0ms" style="visibility: visible; animation-duration: 300ms; -webkit-animation-duration: 300ms; animation-delay: 0ms; -webkit-animation-delay: 0ms; animation-name: fadeInLeft; -webkit-animation-name: fadeInLeft;">
+                    <div class="img-wrapper cc-img-wrapper cc-img-wrapper1">
+                        <img src="~/Content/images/individual.png" class="img-responsive" alt="this is a title" width="150" height="150">
+                        <div class="overlay">
+                            <div class="buttons">
+                                <a rel="gallery" class="fancybox ct-js-btn-scroll" href="#scoll-down" style="text-align:center;" id="IndividualSports" onclick="toggledisplay(this.id) ">Individual Exercise</a>
+                            </div>
+                        </div>
+                    </div>
+                </figure>
+            </div>
+            <div class="col-sm-2 col-xs-12"></div>
+            <div class="col-sm-4 col-xs-12">
+                <figure class="wow fadeInLeft animated portfolio-item animated" data-wow-duration="500ms" data-wow-delay="0ms" style="visibility: visible; animation-duration: 300ms; -webkit-animation-duration: 300ms; animation-delay: 0ms; -webkit-animation-delay: 0ms; animation-name: fadeInLeft; -webkit-animation-name: fadeInLeft;">
+                    <div class="img-wrapper cc-img-wrapper cc-img-wrapper2">
+                        <img src="~/Content/images/group.png" class="img-responsive" alt="this is a title" width="150" height="150">
+                        <div class="overlay">
+                            <div class="buttons bottons-2">
+                                <a rel="gallery" class="fancybox ct-js-btn-scroll" href="#scoll-down" style="text-align:center;" id="TeamSports" onclick="toggledisplay(this.id)">Team Sports</a>
+                            </div>
+                        </div>
+                    </div>
+                </figure>
+            </div>
+            <div class="col-sm-1 col-xs-12"></div>
+        </div>
+
+
+    </div>
+</section>*@
+
+<section style="margin-top:30px;">
+    <div class="container">
+        <div class="col-md-1"></div>
+        <div class="col-md-5 col-xs-12">
+            <div class="card border-secondary mb-3 animated fadeInUp spots-button" style="max-width: 25rem; animation-duration: 600ms;">
+                <div class="card-header">Best Activity to Against Depression</div>
+                <img style="height: 200px; width: 100%; display: block;" src="~/Content/images/sports/choose/individual running.jpg" alt="Card image">
+                <div class="card-body">
+                    <p style="margin-bottom: 20px;" class="card-text">6 best individual exercises for you to release the stress and anxiety. </p>
+                    <div class="buttons cc-img-wrapper1">
+                        <a rel="gallery" class="fancybox ct-js-btn-scroll" href="#scoll-down" style="text-align:center;" id="IndividualSports" onclick="toggledisplay(this.id) ">
+                            <button type="button" class="btn btn-outline-info">View Detail</button>
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 col-xs-12">
+            <div class="card border-secondary mb-3 animated fadeInUp spots-button" style="max-width:25rem; animation-delay: 500ms;">
+                <div class="card-header">Play Sports Nearby</div>
+                <img style="height: 200px; width: 100%; display: block;" src="~/Content/images/sports/choose/team sports.jpg" alt="Card image">
+                <div class="card-body">
+                    <p style="margin-bottom: 20px;" class="card-text">Find the activities you are interested in, and then join the group.</p>
+                    <div class="buttons bottons-2 cc-img-wrapper2">
+                        <a rel="gallery" class="fancybox ct-js-btn-scroll" href="#scoll-down" style="text-align:center;" id="TeamSports" onclick="toggledisplay(this.id)">
+                            <button type="button" class="btn btn-outline-info">View Detail</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</section>
