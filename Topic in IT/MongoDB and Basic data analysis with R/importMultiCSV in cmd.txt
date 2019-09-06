@@ -1,0 +1,31 @@
+FOR %i IN (C:\mongodbData\*.json) DO mongoimport --db dbName --collection colection --type json --file %i
+
+
+F:\IT_in_Monash\FIT5141_AdvTopicIT\Ass_1\FIT 5141 Dataset - Melbourne Pedestrian Traffic\Melbourne Pedestrian Traffic>
+for %i in (*.csv) do "D:\Program Files\MongoDB\Server\bin\mongoimport.exe" --db MelPedTra --collection %i --headerline --type CSV < %i
+
+
+
+
+
+fail:
+F:\IT_in_Monash\FIT5141_AdvTopicIT\Ass_1\FIT 5141 Dataset - Melbourne Pedestrian Traffic\Melbourne Pedestrian Traffic>
+"D:\Program Files\MongoDB\Server\bin\mongoimport.exe" -d Mel_pad_traffic -c September_2014.csv --headerline --type CSV < September_2014.csv
+2017-09-02T15:21:26.317+1000    Failed: fields cannot be identical: '0' and '0'
+2017-09-02T15:21:26.332+1000    imported 0 documents
+
+F:\IT_in_Monash\FIT5141_AdvTopicIT\Ass_1\FIT 5141 Dataset - Melbourne Pedestrian Traffic\Melbourne Pedestrian Traffic>"D:\Program Files\MongoDB\Server\bin\mongoimport.exe" -d Mel_pad_traffic -c August_2014.csv --headerline --type CSV  0<August_2014.csv
+2017-09-02T15:17:27.104+1000    Failed: fields cannot be identical: '' and ''
+2017-09-02T15:17:27.118+1000    imported 0 documents
+
+F:\IT_in_Monash\FIT5141_AdvTopicIT\Ass_1\FIT 5141 Dataset - Melbourne Pedestrian Traffic\Melbourne Pedestrian Traffic>"D:\Program Files\MongoDB\Server\bin\mongoimport.exe" -d Mel_pad_traffic -c December_2013.csv --headerline --type CSV  0<December_2013.csv
+2017-09-02T15:17:27.405+1000    Failed: fields cannot be identical: '0' and '0'
+2017-09-02T15:17:27.421+1000    imported 0 documents
+
+F:\IT_in_Monash\FIT5141_AdvTopicIT\Ass_1\FIT 5141 Dataset - Melbourne Pedestrian Traffic\Melbourne Pedestrian Traffic>"D:\Program Files\MongoDB\Server\bin\mongoimport.exe" -d Mel_pad_traffic -c February_2014.csv --headerline --type CSV  0<February_2014.csv
+2017-09-02T15:17:28.535+1000    Failed: fields cannot be identical: '0' and '0'
+2017-09-02T15:17:28.548+1000    imported 0 documents
+
+F:\IT_in_Monash\FIT5141_AdvTopicIT\Ass_1\FIT 5141 Dataset - Melbourne Pedestrian Traffic\Melbourne Pedestrian Traffic>"D:\Program Files\MongoDB\Server\bin\mongoimport.exe" -d Mel_pad_traffic -c May_2014.csv --headerline --type CSV  0<May_2014.csv
+2017-09-02T15:17:34.318+1000    Failed: fields cannot be identical: '0' and '0'
+2017-09-02T15:17:34.332+1000    imported 0 documents
